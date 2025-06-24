@@ -7,6 +7,7 @@ body {
     padding: 0;
     background-color: #f8f8f8; /* Cor de fundo suave */
     color: #333; /* Cor padrão do texto */
+    line-height: 1.6; /* Aumenta o espaçamento entre linhas para melhor legibilidade */
 }
 
 /* Container principal que envolve todo o conteúdo */
@@ -28,6 +29,7 @@ h1 {
     margin-top: 15px; /* Mantém margin-top para 15px */
     margin-bottom: 35px; /* Aumentado margin-bottom para mais espaço após o título */
     font-size: 2.5em; /* Tamanho da fonte do título */
+    letter-spacing: 1px; /* Adiciona espaçamento entre letras */
 }
 
 /* Estilo para o link "Voltar para a Página Principal" */
@@ -63,6 +65,13 @@ h1 {
     transition: all 0.3s ease; /* Transição suave para o destaque da semana atual */
     position: relative; /* Necessário para posicionar o selo "SEMANA ATUAL" */
 }
+
+/* Efeito ao passar o mouse sobre as colunas */
+.button-column:hover:not(.current-week) { /* Não aplica hover na semana atual, pois ela já tem animação */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra mais pronunciada no hover */
+    transform: translateY(-2px); /* Leve levantamento */
+}
+
 
 /* Estilo para o selo "SEMANA ATUAL" */
 .current-week-label {
@@ -103,6 +112,7 @@ h1 {
     font-weight: bold;
     border-bottom: 2px solid #ccc; /* Linha divisória */
     padding-bottom: 10px;
+    letter-spacing: 0.5px; /* Adiciona leve espaçamento entre letras */
 }
 
 /* Estilo padrão para os botões de cardápio */
@@ -117,8 +127,8 @@ h1 {
     border-radius: 5px;
     font-size: 1.1em;
     font-weight: bold;
-    /* Transições para efeitos suaves ao interagir */
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+    /* Transições para efeitos suaves ao interagir (incluindo opacity para o filtro) */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.4s ease;
     border: none;
     cursor: pointer;
     box-shadow: 0 2px 3px rgba(0,0,0,0.1); /* Sombra suave para os botões */
@@ -138,6 +148,23 @@ h1 {
     transform: translateY(0); /* Remove elevação no hover */
     box-shadow: none; /* Remove sombra */
 }
+
+/* Estilo para botões sem link (texto "Em breve!", adicionado via JavaScript) */
+.button.no-link {
+    background-color: #cccccc; /* Cor de fundo diferente (cinza) */
+    border: 1px dashed #999999; /* Borda tracejada */
+    color: #666; /* Texto mais escuro */
+    cursor: not-allowed; /* Altera o cursor para "não permitido" */
+    opacity: 0.7; /* Mantém um pouco de opacidade, mas menos que os filtrados */
+    box-shadow: none; /* Remove a sombra */
+    transform: none; /* Remove qualquer transformação de hover */
+}
+.button.no-link:hover { /* Garante que não haja efeito de hover para botões sem link */
+    background-color: #cccccc;
+    transform: none;
+    box-shadow: none;
+}
+
 
 /* Cores personalizadas para os botões por tipo de instituição */
 .button.creche-m-verde {
