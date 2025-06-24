@@ -15,7 +15,7 @@ body {
     /* Se quiser uma largura controlada, descomente e ajuste o valor: */
     /* max-width: 1200px; */
     margin: 0 auto; /* Centraliza o container na página */
-    padding: 10px 20px 20px 20px; /* Reduzido padding-top para 10px */
+    padding: 5px 20px 20px 20px; /* Reduzido padding-top para 5px */
     background-color: #ffffff; /* Fundo branco para o bloco de conteúdo */
     border-radius: 8px; /* Cantos arredondados */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
@@ -241,7 +241,7 @@ h1 {
 /* Telas pequenas (ex: celulares) */
 @media (max-width: 600px) {
     .main-container {
-        padding: 15px; /* Reduz o padding do container principal */
+        padding: 10px; /* Reduz o padding do container principal para 10px */
     }
     h1 {
         font-size: 1.8em; /* Título principal menor */
