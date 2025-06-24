@@ -1,42 +1,232 @@
-/* Garante que o elemento raiz HTML e o corpo da página ocupem 100% da largura e altura do navegador, removendo margens padrão e evitando rolagem horizontal indesejada. */
+/* Estilos Essenciais para Largura Total e Reset Básico */
 html, body {
     width: 100%;
     height: 100%;
     margin: 0; /* Remove margens externas padrão do navegador */
     padding: 0; /* Remove preenchimento interno padrão do navegador */
-    overflow-x: hidden; /* Previne a barra de rolagem horizontal se o conteúdo for mais largo que a tela */
+    overflow-x: hidden; /* Previne a barra de rolagem horizontal indesejada */
+    font-family: Arial, sans-serif; /* Define uma fonte padrão */
+    line-height: 1.6; /* Melhora a legibilidade do texto */
+    color: #333; /* Cor de texto padrão */
 }
 
-/* Estilos para o seu contêiner principal */
+/* Contêiner Principal */
 .main-container {
-    width: 100%; /* Faz com que o contêiner principal ocupe 100% da largura disponível */
-    max-width: none; /* Remove qualquer restrição de largura máxima que possa estar limitando o contêiner */
-    margin: 0 auto; /* Centraliza o contêiner. Embora não faça diferença visual com 100% de largura, é uma boa prática. */
-    padding: 20px; /* Adiciona um espaçamento interno de 20px em todos os lados para que o conteúdo não fique "colado" nas bordas da tela */
-    box-sizing: border-box; /* Garante que o padding seja incluído na largura total do elemento, evitando que ele transborde. */
+    width: 100%; /* Ocupa 100% da largura da tela */
+    max-width: none; /* Remove qualquer limite de largura máxima */
+    margin: 0 auto; /* Centraliza o contêiner */
+    padding: 20px; /* Espaçamento interno para o conteúdo */
+    box-sizing: border-box; /* Garante que o padding seja incluído na largura total */
 }
 
-/* Ajustes para o contêiner de colunas e as próprias colunas */
+/* Título Principal */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+/* Link de Voltar */
+.back-link {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.back-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.back-link a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Contêiner da Legenda de Filtros */
+.legend-container {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #e0f2f7; /* Cor de fundo suave para a legenda */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.legend-container p {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Itens da Legenda (Filtros) */
+.legend-item {
+    display: inline-block;
+    color: white;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.legend-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.legend-item.active {
+    border: 2px solid #555; /* Destaque para o item de filtro ativo */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+/* Cores dos Itens da Legenda */
+.legend-item[data-filter="creche-m-verde"] { background-color: #2ecc71; }
+.legend-item[data-filter="creches"] { background-color: #f39c12; }
+.legend-item[data-filter="fundamental"] { background-color: #3498db; }
+.legend-item[data-filter="etec"] { background-color: #9b59b6; }
+
+/* Botão "Mostrar Todos" */
+.show-all-button {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.show-all-button:hover {
+    background-color: #5a6268;
+}
+
+/* Mensagem de Filtro */
+#filter-message {
+    margin-top: 10px;
+    font-style: italic;
+    color: #555;
+    min-height: 20px; /* Garante que o espaço seja reservado, evitando "saltos" no layout */
+}
+
+/* Contêiner das Colunas de Semanas */
 .columns-container {
-    display: flex; /* Mantém o layout de colunas flexível */
-    flex-wrap: wrap; /* Permite que as colunas se quebrem em múltiplas linhas em telas menores (responsividade) */
-    justify-content: space-around; /* Distribui as colunas uniformemente dentro do espaço disponível */
-    width: 100%; /* Garante que este contêiner também utilize 100% da largura */
+    display: flex; /* Layout flexbox para as colunas */
+    flex-wrap: wrap; /* Permite que as colunas quebrem para a próxima linha em telas menores */
+    justify-content: center; /* Centraliza as colunas */
+    gap: 20px; /* Espaçamento entre as colunas */
+    width: 100%; /* Ocupa 100% da largura do pai */
 }
 
+/* Cada Coluna de Semana */
 .button-column {
-    flex: 1; /* Permite que as colunas se expandam e contraiam para preencher o espaço disponível */
-    min-width: 280px; /* Define uma largura mínima para cada coluna, útil em telas pequenas para evitar que fiquem muito estreitas */
-    margin: 10px; /* Adiciona um espaçamento de 10px entre as colunas */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    text-align: center;
+    flex: 1; /* Permite que as colunas se expandam e contraiam */
+    min-width: 280px; /* Largura mínima para cada coluna antes de quebrar */
+    max-width: 350px; /* Largura máxima para evitar que fiquem muito largas em telas grandes */
+    box-sizing: border-box; /* Inclui padding e borda na largura/altura total */
+    transition: all 0.3s ease; /* Transição suave para o destaque da semana atual */
 }
 
-/* Adicione também um estilo para os botões desativados pelo filtro, caso ainda não tenha */
+.button-column .column-title {
+    color: #2980b9;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+/* Estilos dos Botões de Cardápio */
+.button {
+    display: block; /* Cada botão ocupa sua própria linha */
+    color: white;
+    padding: 12px 15px;
+    margin: 10px auto; /* Centraliza os botões e adiciona margem vertical */
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: calc(100% - 20px); /* Ajusta a largura para considerar o padding */
+    box-sizing: border-box;
+}
+
+.button:hover {
+    transform: translateY(-2px); /* Efeito de leve "levantar" ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Cores específicas para os botões */
+.button.creche-m-verde { background-color: #2ecc71; }
+.button.creche-m-verde:hover { background-color: #27ae60; }
+.button.creches { background-color: #f39c12; }
+.button.creches:hover { background-color: #e67e22; }
+.button.fundamental { background-color: #3498db; }
+.button.fundamental:hover { background-color: #2980b9; }
+.button.etec { background-color: #9b59b6; }
+.button.etec:hover { background-color: #8e44ad; }
+
+/* Classe para botões ocultos pelo filtro */
 .inactive-filtered {
     display: none; /* Esconde os botões que não correspondem ao filtro */
 }
 
-/* Opcional: Estilo para o item de legenda ativo */
-.legend-item.active {
-    border: 2px solid #333; /* Exemplo de destaque para o filtro ativo */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .columns-container {
+        flex-direction: column; /* Em telas menores, as colunas empilham */
+        align-items: center; /* Centraliza as colunas empilhadas */
+        gap: 15px; /* Reduz o espaçamento entre colunas empilhadas */
+    }
+
+    .button-column {
+        width: 90%; /* As colunas ocupam 90% da largura em telas pequenas */
+        margin: 0; /* Remove margem lateral */
+        padding: 15px; /* Ajusta o padding */
+    }
+
+    .legend-item, .show-all-button {
+        display: block; /* Itens da legenda e botão "Mostrar Todos" empilham */
+        width: calc(100% - 20px); /* Ocupam a largura total menos o padding */
+        margin: 5px auto; /* Centraliza e adiciona margem vertical */
+    }
+
+    .show-all-button {
+        margin-left: auto; /* Centraliza o botão "Mostrar Todos" */
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-container {
+        padding: 10px; /* Reduz o padding geral em telas muito pequenas */
+    }
+
+    h1 {
+        font-size: 1.8em; /* Ajusta o tamanho do título */
+    }
+
+    .button-column .column-title {
+        font-size: 1.1em; /* Ajusta o tamanho do título da coluna */
+    }
+
+    .button {
+        font-size: 0.9em; /* Ajusta o tamanho da fonte dos botões */
+        padding: 10px 12px;
+    }
+
+    .legend-item {
+        font-size: 0.85em; /* Ajusta o tamanho da fonte dos filtros */
+        padding: 6px 10px;
+    }
 }
