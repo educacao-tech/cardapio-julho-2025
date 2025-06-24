@@ -92,7 +92,6 @@
             animation: pulse-shadow 2s infinite ease-in-out; /* Aplica a animação */
         }
 
-
         /* Estilo para os títulos das colunas */
         .column-title {
             text-align: center;
@@ -289,7 +288,7 @@
 
     <div class="main-container">
         <p class="back-link">
-            <a href="https://sites.google.com/educacao.batatais.sp.gov.br/seceduc/in%c3%adcio">← Voltar para a Página Principal modificado</a>
+            <a href="https://sites.google.com/educacao.batatais.sp.gov.br/seceduc/in%c3%adcio">← Voltar para a Página Principal</a>
         </p>
         <h1>Cardápio Julho 2025</h1>
 
@@ -360,7 +359,7 @@
                 <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 5ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
                 <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 5ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
                 <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 5ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, Castelo, Washington na 5ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
+                <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 5ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
                 <a href="#" class="button etec" data-week="semana5" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 5ª Semana de Julho">ETEC - PAULA SOUZA</a>
             </div>
         </div>
@@ -368,59 +367,66 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Objeto para centralizar todos os links dos cardápios
-            // Mantenha este objeto atualizado com os links reais dos documentos!
+            // Objeto para centralizar todos os links dos cardápios.
+            // **ATENÇÃO:** ATUALIZE ESTES LINKS COM OS IDs DOS SEUS DOCUMENTOS REAIS!
+            // A estrutura agora é ano -> mês -> semana -> tipo.
             const menuLinks = {
-                "semana1": {
-                    "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM1/edit",
-                    "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM1/edit",
-                    "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM1/edit",
-                    "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM1/edit",
-                    "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM1/edit",
-                    "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM1/edit",
-                    "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM1/edit",
-                    "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM1/edit"
-                },
-                "semana2": {
-                    "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM2/edit",
-                    "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM2/edit",
-                    "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM2/edit",
-                    "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM2/edit",
-                    "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM2/edit",
-                    "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM2/edit",
-                    "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM2/edit",
-                    "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM2/edit"
-                },
-                "semana3": {
-                    "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM3/edit",
-                    "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM3/edit",
-                    "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM3/edit",
-                    "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM3/edit",
-                    "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM3/edit",
-                    "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM3/edit",
-                    "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM3/edit",
-                    "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM3/edit"
-                },
-                "semana4": {
-                    "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM4/edit",
-                    "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM4/edit",
-                    "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM4/edit",
-                    "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM4/edit",
-                    "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM4/edit",
-                    "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM4/edit",
-                    "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM4/edit",
-                    "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM4/edit"
-                },
-                "semana5": {
-                    "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM5/edit",
-                    "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM5/edit",
-                    "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM5/edit",
-                    "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM5/edit",
-                    "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM5/edit",
-                    "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM5/edit",
-                    "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM5/edit",
-                    "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM5/edit"
+                "2025": {
+                    "julho": { // Use o nome do mês em minúsculas
+                        "semana1": {
+                            "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM1/edit",
+                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM1/edit",
+                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM1/edit",
+                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM1/edit",
+                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM1/edit",
+                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM1/edit",
+                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM1/edit",
+                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM1/edit"
+                        },
+                        "semana2": {
+                            "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM2/edit",
+                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM2/edit",
+                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM2/edit",
+                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM2/edit",
+                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM2/edit",
+                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM2/edit",
+                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM2/edit",
+                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM2/edit"
+                        },
+                        "semana3": {
+                            "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM3/edit",
+                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM3/edit",
+                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM3/edit",
+                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM3/edit",
+                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM3/edit",
+                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM3/edit",
+                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM3/edit",
+                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM3/edit"
+                        },
+                        "semana4": {
+                            "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM4/edit",
+                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM4/edit",
+                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM4/edit",
+                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM4/edit",
+                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM4/edit",
+                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM4/edit",
+                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM4/edit",
+                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM4/edit"
+                        },
+                        "semana5": {
+                            "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM5/edit",
+                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM5/edit",
+                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM5/edit",
+                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM5/edit",
+                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM5/edit",
+                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM5/edit",
+                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM5/edit",
+                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM5/edit"
+                        }
+                    }
+                    // Adicione outros meses aqui, como "agosto": {}, "setembro": {}, etc.
                 }
+                // Adicione outros anos aqui, como "2026": {}
             };
 
             const allButtons = document.querySelectorAll('.button');
@@ -430,24 +436,28 @@
 
             // --- Atribui os links dinamicamente e melhora feedback para links vazios ---
             function applyLinksToButtons() {
+                const currentYear = new Date().getFullYear().toString();
+                const currentMonth = new Date().toLocaleString('pt-BR', { month: 'long' }).toLowerCase(); // Ex: "julho"
+
                 allButtons.forEach(button => {
                     const week = button.dataset.week;
                     const type = button.dataset.type;
                     const originalLabel = button.getAttribute('aria-label'); // Guarda o label original
 
                     let foundLink = null;
-                    if (menuLinks[week]) {
+                    // Tenta acessar o link na nova estrutura: menuLinks[ano][mes][semana][tipo]
+                    if (menuLinks[currentYear] && menuLinks[currentYear][currentMonth] && menuLinks[currentYear][currentMonth][week]) {
                         // Tenta encontrar o tipo exato primeiro
-                        if (menuLinks[week][type]) {
-                            foundLink = menuLinks[week][type];
+                        if (menuLinks[currentYear][currentMonth][week][type]) {
+                            foundLink = menuLinks[currentYear][currentMonth][week][type];
                         } else {
                             // Se não encontrar o tipo exato, procura por um tipo que comece com o valor
                             // Isso é útil para agrupar os 'fundamental-grupo1', 'fundamental-grupo2' etc.
                             // Apenas para tipos que começam com 'fundamental'
                             if (type.startsWith('fundamental')) {
-                                for (const key in menuLinks[week]) {
+                                for (const key in menuLinks[currentYear][currentMonth][week]) {
                                     if (key.startsWith(type)) {
-                                        foundLink = menuLinks[week][key];
+                                        foundLink = menuLinks[currentYear][currentMonth][week][key];
                                         break;
                                     }
                                 }
@@ -455,7 +465,7 @@
                         }
                     }
 
-                    if (foundLink && foundLink.trim() !== '') { // Verifica se o link foi encontrado e não está vazio
+                    if (foundLink && foundLink.trim() !== '' && foundLink.startsWith('http')) { // Garante que é um link válido
                         button.href = foundLink;
                         button.style.pointerEvents = ''; // Habilita o clique
                         button.style.opacity = '1';     // Remove a opacidade
@@ -491,7 +501,8 @@
                     if (label) label.remove(); // Remove selo se existir
                 });
 
-                // Lógica de destaque para Julho de 2025 (mantenha como está)
+                // Lógica de destaque para o mês e ano corrente (adaptada para a nova estrutura de dados)
+                // Usando `month === 7 && year === 2025` para focar especificamente no cardápio de Julho de 2025
                 if (month === 7 && year === 2025) {
                     let currentWeekColumnId = '';
 
@@ -531,12 +542,24 @@
             // --- Funcionalidade de Filtragem ---
             function filterButtons(filterType, filterName = '') {
                 allButtons.forEach(button => {
-                    if (filterType === 'all' || button.dataset.type.startsWith(filterType)) {
-                        button.classList.remove('inactive-filtered');
+                    // Se o botão não tiver um link válido e o filtro não for 'all', mantenha-o opaco.
+                    // Isso evita que botões "Em breve!" reapareçam ao filtrar se não tiverem o tipo exato.
+                    const hasValidLink = !(button.style.pointerEvents === 'none'); // Verifica se está desabilitado por não ter link
+
+                    if (filterType === 'all') {
+                        button.classList.remove('inactive-filtered'); // Mostra todos
+                    } else if (button.dataset.type.startsWith(filterType)) {
+                         button.classList.remove('inactive-filtered');
                     } else {
                         button.classList.add('inactive-filtered');
                     }
+
+                    // Se não tiver link e não for "mostrar todos", garanta que a opacidade se mantenha
+                    if (!hasValidLink && filterType !== 'all') {
+                         button.classList.add('inactive-filtered');
+                    }
                 });
+
 
                 if (filterType === 'all') {
                     filterMessage.textContent = '';
