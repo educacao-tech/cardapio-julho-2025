@@ -15,7 +15,7 @@ body {
     /* Se quiser uma largura controlada, descomente e ajuste o valor: */
     /* max-width: 1200px; */
     margin: 0 auto; /* Centraliza o container na página */
-    padding: 5px 20px 20px 20px; /* Reduzido padding-top para 5px */
+    padding: 5px 20px 25px 20px; /* Reduzido padding-top para 5px, aumentado padding-bottom para 25px para mais espaço abaixo */
     background-color: #ffffff; /* Fundo branco para o bloco de conteúdo */
     border-radius: 8px; /* Cantos arredondados */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
@@ -25,15 +25,15 @@ body {
 h1 {
     text-align: center;
     color: #2c3e50; /* Cor escura para o título */
-    margin-top: 15px; /* Reduzido margin-top para 15px */
-    margin-bottom: 30px;
+    margin-top: 15px; /* Mantém margin-top para 15px */
+    margin-bottom: 35px; /* Aumentado margin-bottom para mais espaço após o título */
     font-size: 2.5em; /* Tamanho da fonte do título */
 }
 
 /* Estilo para o link "Voltar para a Página Principal" */
 .back-link {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Aumentado margin-bottom para mais espaço abaixo do link */
     font-size: 1.1em;
 }
 .back-link a {
@@ -47,7 +47,7 @@ h1 {
     display: grid;
     /* Colunas responsivas: mínimo de 280px, estica para 1 fração disponível */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px; /* Espaçamento entre as colunas */
+    gap: 25px; /* Aumentado espaçamento entre as colunas para 25px */
     justify-content: center; /* Centraliza as colunas */
 }
 
@@ -166,7 +166,7 @@ h1 {
 /* Estilos para o container da legenda (filtros) */
 .legend-container {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px; /* Aumentado margin-bottom para mais espaço após a legenda */
     padding: 15px;
     background-color: #f0f0f0;
     border-radius: 5px;
@@ -241,7 +241,7 @@ h1 {
 /* Telas pequenas (ex: celulares) */
 @media (max-width: 600px) {
     .main-container {
-        padding: 10px; /* Reduz o padding do container principal para 10px */
+        padding: 10px 15px 15px 15px; /* Ajustado padding para telas menores: topo 10px, lados 15px, baixo 15px */
     }
     h1 {
         font-size: 1.8em; /* Título principal menor */
