@@ -60,7 +60,38 @@
             flex-direction: column;
             gap: 10px;
             transition: all 0.3s ease;
+            position: relative; /* Para o selo de semana atual */
         }
+
+        /* Estilo para o selo de semana atual */
+        .current-week-label {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background-color: #27ae60; /* Verde */
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            font-weight: bold;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        /* Animação de pulso para a sombra da semana atual */
+        @keyframes pulse-shadow {
+            0% { box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+            50% { box-shadow: 0 6px 12px rgba(0,0,0,0.25); }
+            100% { box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
+        }
+
+        .button-column.current-week {
+            border: 2px solid #27ae60 !important; /* Mais forte */
+            background-color: #e6ffe6 !important; /* Fundo mais claro */
+            animation: pulse-shadow 2s infinite ease-in-out; /* Aplica a animação */
+        }
+
 
         /* Estilo para os títulos das colunas */
         .column-title {
@@ -247,6 +278,10 @@
             #filter-message {
                 font-size: 0.85em;
             }
+            .current-week-label {
+                padding: 3px 8px;
+                font-size: 0.7em;
+            }
         }
     </style>
 </head>
@@ -254,7 +289,7 @@
 
     <div class="main-container">
         <p class="back-link">
-            <a href="https://sites.google.com/educacao.batatais.sp.gov.br/seceduc/in%C3%ADcio">← Voltar para a Página Principal aqui</a>
+            <a href="https://sites.google.com/educacao.batatais.sp.gov.br/seceduc/in%c3%adcio">← Voltar para a Página Principal</a>
         </p>
         <h1>Cardápio Julho 2025</h1>
 
@@ -334,6 +369,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Objeto para centralizar todos os links dos cardápios
+            // Mantenha este objeto atualizado com os links reais dos documentos!
             const menuLinks = {
                 "semana1": {
                     "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM1/edit",
@@ -388,69 +424,113 @@
             };
 
             const allButtons = document.querySelectorAll('.button');
+            const legendItems = document.querySelectorAll('.legend-item');
+            const showAllButton = document.querySelector('.show-all-button');
+            const filterMessage = document.getElementById('filter-message');
 
-            // Atribui os links dinamicamente
-            allButtons.forEach(button => {
-                const week = button.dataset.week;
-                const type = button.dataset.type;
+            // --- Atribui os links dinamicamente e melhora feedback para links vazios ---
+            function applyLinksToButtons() {
+                allButtons.forEach(button => {
+                    const week = button.dataset.week;
+                    const type = button.dataset.type;
+                    const originalLabel = button.getAttribute('aria-label'); // Guarda o label original
 
-                if (menuLinks[week] && menuLinks[week][type]) {
-                    button.href = menuLinks[week][type];
-                } else {
-                    console.warn(`Link não encontrado para semana: ${week}, tipo: ${type}. Botão desabilitado.`);
-                    button.href = "#"; // Evita navegação inválida
-                    button.style.pointerEvents = 'none'; // Desabilita o clique
-                    button.style.opacity = '0.5'; // Deixa o botão mais claro
-                }
-            });
+                    let foundLink = null;
+                    if (menuLinks[week]) {
+                        // Tenta encontrar o tipo exato primeiro
+                        if (menuLinks[week][type]) {
+                            foundLink = menuLinks[week][type];
+                        } else {
+                            // Se não encontrar o tipo exato, procura por um tipo que comece com o valor
+                            // Isso é útil para agrupar os 'fundamental-grupo1', 'fundamental-grupo2' etc.
+                            // Apenas para tipos que começam com 'fundamental'
+                            if (type.startsWith('fundamental')) {
+                                for (const key in menuLinks[week]) {
+                                    if (key.startsWith(type)) {
+                                        foundLink = menuLinks[week][key];
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
 
-            // --- Destaque e Reordenação da Semana Atual ---
-            const today = new Date();
-            const dayOfMonth = today.getDate();
-            const month = today.getMonth() + 1; // getMonth() retorna de 0 a 11
-            const year = today.getFullYear();
+                    if (foundLink && foundLink.trim() !== '') { // Verifica se o link foi encontrado e não está vazio
+                        button.href = foundLink;
+                        button.style.pointerEvents = ''; // Habilita o clique
+                        button.style.opacity = '1';     // Remove a opacidade
+                        button.title = originalLabel; // Restaura o título original
+                        button.textContent = button.dataset.originalText || button.textContent; // Restaura texto original
+                        button.classList.remove('no-link'); // Remove classe se houver
+                    } else {
+                        // Guarda o texto original do botão antes de alterá-lo
+                        if (!button.dataset.originalText) {
+                            button.dataset.originalText = button.textContent;
+                        }
+                        button.href = "#"; // Evita navegação inválida
+                        button.style.pointerEvents = 'none'; // Desabilita o clique
+                        button.style.opacity = '0.5'; // Deixa o botão mais claro
+                        button.title = "Cardápio não disponível ou em breve."; // Informa ao usuário
+                        button.textContent = "Em breve!"; // Altera o texto visível no botão
+                        button.classList.add('no-link'); // Adiciona uma classe para estilização futura se quiser
+                    }
+                });
+            }
 
-            // Este código foi ajustado para o cardápio de JULHO de 2025.
-            if (month === 7 && year === 2025) { // Mês de Julho (7) e ano 2025
-                let currentWeekColumnId = '';
+            // --- Destaque e Reordenação da Semana Atual (com selo) ---
+            function highlightCurrentWeek() {
+                const today = new Date();
+                const dayOfMonth = today.getDate();
+                const month = today.getMonth() + 1; // getMonth() retorna de 0 a 11
+                const year = today.getFullYear();
 
-                if (dayOfMonth >= 1 && dayOfMonth <= 4) {
-                    currentWeekColumnId = 'semana1';
-                } else if (dayOfMonth >= 7 && dayOfMonth <= 11) {
-                    currentWeekColumnId = 'semana2';
-                } else if (dayOfMonth >= 14 && dayOfMonth <= 18) {
-                    currentWeekColumnId = 'semana3';
-                } else if (dayOfMonth >= 21 && dayOfMonth <= 25) {
-                    currentWeekColumnId = 'semana4';
-                } else if (dayOfMonth >= 28 && dayOfMonth <= 31) {
-                    currentWeekColumnId = 'semana5';
-                }
+                // Resetar destaques anteriores
+                document.querySelectorAll('.button-column').forEach(col => {
+                    col.classList.remove('current-week');
+                    const label = col.querySelector('.current-week-label');
+                    if (label) label.remove(); // Remove selo se existir
+                });
 
-                if (currentWeekColumnId) {
-                    const currentWeekColumn = document.getElementById(currentWeekColumnId);
-                    if (currentWeekColumn) {
-                        // Aplica os estilos de destaque
-                        currentWeekColumn.style.border = '2px solid #27ae60';
-                        currentWeekColumn.style.boxShadow = '0 4px 8px rgba(0,0,0,0.15)';
-                        currentWeekColumn.style.backgroundColor = '#e6ffe6';
+                // Lógica de destaque para Julho de 2025 (mantenha como está)
+                if (month === 7 && year === 2025) {
+                    let currentWeekColumnId = '';
 
-                        // Move a coluna da semana atual para ser a primeira dentro do container
-                        const columnsContainer = document.querySelector('.columns-container');
-                        if (columnsContainer) {
-                            columnsContainer.prepend(currentWeekColumn);
+                    if (dayOfMonth >= 1 && dayOfMonth <= 4) {
+                        currentWeekColumnId = 'semana1';
+                    } else if (dayOfMonth >= 7 && dayOfMonth <= 11) {
+                        currentWeekColumnId = 'semana2';
+                    } else if (dayOfMonth >= 14 && dayOfMonth <= 18) {
+                        currentWeekColumnId = 'semana3';
+                    } else if (dayOfMonth >= 21 && dayOfMonth <= 25) {
+                        currentWeekColumnId = 'semana4';
+                    } else if (dayOfMonth >= 28 && dayOfMonth <= 31) {
+                        currentWeekColumnId = 'semana5';
+                    }
+
+                    if (currentWeekColumnId) {
+                        const currentWeekColumn = document.getElementById(currentWeekColumnId);
+                        if (currentWeekColumn) {
+                            currentWeekColumn.classList.add('current-week'); // Aplica a nova classe de destaque
+
+                            // Adiciona o selo "SEMANA ATUAL"
+                            const label = document.createElement('span');
+                            label.classList.add('current-week-label');
+                            label.textContent = 'SEMANA ATUAL';
+                            currentWeekColumn.prepend(label); // Adiciona como primeiro elemento da coluna
+
+                            // Move a coluna da semana atual para ser a primeira dentro do container
+                            const columnsContainer = document.querySelector('.columns-container');
+                            if (columnsContainer) {
+                                columnsContainer.prepend(currentWeekColumn);
+                            }
                         }
                     }
                 }
             }
 
             // --- Funcionalidade de Filtragem ---
-            const legendItems = document.querySelectorAll('.legend-item');
-            const showAllButton = document.querySelector('.show-all-button');
-            const filterMessage = document.getElementById('filter-message');
-
             function filterButtons(filterType, filterName = '') {
                 allButtons.forEach(button => {
-                    // Usamos startsWith para abranger todos os tipos de "fundamental" (ex: fundamental-grupo1)
                     if (filterType === 'all' || button.dataset.type.startsWith(filterType)) {
                         button.classList.remove('inactive-filtered');
                     } else {
@@ -483,8 +563,10 @@
                 filterButtons('all'); // Mostra todos os botões
             });
 
-            // Mostrar todos os botões por padrão ao carregar a página
-            filterButtons('all');
+            // Chama as funções ao carregar a página
+            applyLinksToButtons();
+            highlightCurrentWeek();
+            filterButtons('all'); // Garante que todos os botões estão visíveis inicialmente
         });
     </script>
 
