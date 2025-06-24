@@ -5,187 +5,247 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio Julho 2025</title>
     <style>
-        /* Garante que o elemento raiz HTML e o corpo da página ocupem 100% da largura e altura do navegador, removendo margens padrão e evitando rolagem horizontal indesejada. */
-        html, body {
-            width: 100%;
-            height: 100%;
-            margin: 0; /* Remove margens externas padrão do navegador */
-            padding: 0; /* Remove preenchimento interno padrão do navegador */
-            overflow-x: hidden; /* Previne a barra de rolagem horizontal se o conteúdo for mais largo que a tela */
-        }
-
-        /* Estilos para o seu contêiner principal */
-        .main-container {
-            width: 100%; /* Faz com que o contêiner principal ocupe 100% da largura disponível */
-            max-width: none; /* Remove qualquer restrição de largura máxima que possa ter sido definida */
-            margin: 0 auto; /* Centraliza o contêiner. Embora não faça diferença visual com 100% de largura, é uma boa prática. */
-            padding: 20px; /* Adiciona um espaçamento interno de 20px em todos os lados para que o conteúdo não fique "colado" nas bordas da tela */
-            box-sizing: border-box; /* Garante que o padding seja incluído na largura total do elemento, evitando que ele transborde. */
-        }
-
-        /* Ajustes para o contêiner de colunas e as próprias colunas */
-        .columns-container {
-            display: flex; /* Mantém o layout de colunas flexível */
-            flex-wrap: wrap; /* Permite que as colunas se quebrem em múltiplas linhas em telas menores (responsividade) */
-            justify-content: space-around; /* Distribui as colunas uniformemente dentro do espaço disponível */
-            width: 100%; /* Garante que este contêiner também utilize 100% da largura */
-        }
-
-        .button-column {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 15px;
-            margin-bottom: 20px;
-            text-align: center;
-            flex: 1; /* Permite que as colunas se expandam e contraiam para preencher o espaço disponível */
-            min-width: 280px; /* Define uma largura mínima para cada coluna, útil em telas pequenas para evitar que fiquem muito estreitas */
-            margin: 10px; /* Adiciona um espaçamento de 10px entre as colunas */
-            box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura total */
-        }
-
-        .button-column .column-title {
+        /* Estilos básicos para o layout no Google Sites */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remover margem padrão do body */
+            padding: 0;
+            background-color: #f8f8f8;
             color: #333;
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.2em;
         }
 
-        /* Estilos gerais para os botões */
-        .button {
-            display: block;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 15px;
-            margin: 8px 0;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
+        .main-container {
+            /* Se você quer largura total, mantenha max-width comentado ou remova. */
+            /* Se quer largura controlada, descomente e ajuste o valor. */
+            /* max-width: 1200px; */
+            margin: 0 auto; /* Centraliza o container */
+            padding: 20px;
+            background-color: #ffffff; /* Fundo do bloco de conteúdo */
+            border-radius: 8px; /* Cantos arredondados */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
         }
 
-        .button:hover {
-            background-color: #0056b3;
+        h1 {
+            text-align: center;
+            color: #2c3e50; /* Cor do título principal */
+            margin-bottom: 30px;
+            font-size: 2.5em; /* Tamanho do título principal */
         }
 
-        /* Cores específicas para os botões de filtro */
-        .button.creche-m-verde { background-color: #2ecc71; }
-        .button.creche-m-verde:hover { background-color: #27ae60; }
-        .button.creches { background-color: #f39c12; }
-        .button.creches:hover { background-color: #e67e22; }
-        .button.fundamental { background-color: #3498db; }
-        .button.fundamental:hover { background-color: #2980b9; }
-        .button.etec { background-color: #9b59b6; }
-        .button.etec:hover { background-color: #8e44ad; }
-
-        /* Estilos para o link "Voltar" */
+        /* Estilo para o link "Voltar para a Página Principal" */
         .back-link {
             text-align: center;
             margin-bottom: 20px;
+            font-size: 1.1em; /* Tamanho padrão */
         }
-
         .back-link a {
-            color: #007bff;
             text-decoration: none;
+            color: #3498db;
             font-weight: bold;
         }
 
-        .back-link a:hover {
-            text-decoration: underline;
+        .columns-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            justify-content: center;
         }
 
-        /* Estilos para a legenda de filtro */
+        .button-column {
+            background-color: #f2f2f2;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        /* Estilo para os títulos das colunas */
+        .column-title {
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+
+        .button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        /* Estilo para botões inativos no filtro */
+        .button.inactive-filtered {
+            opacity: 0.3;
+            pointer-events: none;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        /* Cores personalizadas para os botões */
+        .button.creche-m-verde {
+            background-color: #2ecc71;
+        }
+        .button.creche-m-verde:hover {
+            background-color: #27ae60;
+        }
+
+        .button.creches {
+            background-color: #f39c12;
+        }
+        .button.creches:hover {
+            background-color: #e67e22;
+        }
+
+        .button.etec {
+            background-color: #9b59b6;
+        }
+        .button.etec:hover {
+            background-color: #8e44ad;
+        }
+
+        /* Estilos para a legenda */
         .legend-container {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             padding: 15px;
-            background-color: #e0f2f7; /* Cor de fundo suave para a legenda */
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
         }
 
         .legend-container p {
-            margin-top: 0;
-            margin-bottom: 10px;
             font-weight: bold;
-            color: #333;
+            margin-bottom: 10px;
+            color: #34495e;
+            font-size: 1.1em;
         }
 
         .legend-item {
             display: inline-block;
+            padding: 5px 10px;
+            border-radius: 3px;
             color: white;
-            padding: 8px 12px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
             font-size: 0.9em;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin: 0 5px 5px;
+            cursor: pointer;
+            transition: opacity 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
 
         .legend-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            opacity: 0.8;
+            transform: translateY(-1px);
         }
 
         .legend-item.active {
-            border: 2px solid #555; /* Destaque para o item de filtro ativo */
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            box-shadow: 0 0 0 3px #27ae60;
+            opacity: 1;
+            transform: translateY(0);
         }
 
+        /* Botão para mostrar todos */
         .show-all-button {
-            background-color: #6c757d;
+            background-color: #607d8b;
             color: white;
-            border: none;
-            padding: 8px 12px;
-            margin-left: 10px;
+            padding: 8px 15px;
             border-radius: 5px;
+            border: none;
             cursor: pointer;
             font-weight: bold;
-            font-size: 0.9em;
+            margin-top: 15px;
             transition: background-color 0.3s ease;
         }
-
         .show-all-button:hover {
-            background-color: #5a6268;
+            background-color: #455a64;
         }
 
+        /* Estilo para a mensagem de filtro ativo */
         #filter-message {
             margin-top: 10px;
-            font-style: italic;
+            font-size: 0.95em;
             color: #555;
+            font-style: italic;
         }
 
-        /* Estilos para os botões desativados pelo filtro */
-        .inactive-filtered {
-            display: none; /* Esconde os botões que não correspondem ao filtro */
-        }
-
-        /* Estilos para a semana atual em destaque (JavaScript aplica inline, mas bom ter aqui caso necessário) */
-        /*
-        .current-week-highlight {
-            border: 2px solid #27ae60;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            background-color: #e6ffe6;
-        }
-        */
-
-        /* Media Queries para Responsividade */
-        @media (max-width: 768px) {
+        /* --- Media Queries para responsividade --- */
+        @media (max-width: 992px) {
             .columns-container {
-                flex-direction: column; /* Em telas menores, as colunas empilham */
-                align-items: center; /* Centraliza as colunas empilhadas */
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
+        }
 
+        @media (max-width: 600px) {
+            .main-container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+            .back-link {
+                font-size: 0.9em;
+                margin-bottom: 15px;
+            }
+            .columns-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
             .button-column {
-                width: 95%; /* As colunas ocupam quase a largura total em telas pequenas */
-                margin: 10px 0; /* Ajusta a margem para empilhamento */
+                padding: 12px;
+                gap: 8px;
             }
-
-            .legend-item, .show-all-button {
-                display: block; /* Itens da legenda e botão empilham em telas menores */
-                width: calc(100% - 20px); /* Ocupam a largura total menos o padding */
-                margin: 5px auto; /* Centraliza e adiciona margem vertical */
+            .column-title {
+                font-size: 1.2em;
+                margin-bottom: 10px;
+                padding-bottom: 8px;
+            }
+            .button {
+                font-size: 1em;
+                padding: 10px 12px;
+            }
+            .legend-item {
+                display: block;
+                margin: 5px auto;
+                font-size: 0.85em;
+                padding: 4px 8px;
+            }
+            .legend-container {
+                padding: 12px;
+                margin-bottom: 20px;
+            }
+            .legend-container p {
+                font-size: 1em;
+                margin-bottom: 8px;
+            }
+            .show-all-button {
+                padding: 7px 12px;
+                font-size: 0.9em;
+            }
+            #filter-message {
+                font-size: 0.85em;
             }
         }
     </style>
