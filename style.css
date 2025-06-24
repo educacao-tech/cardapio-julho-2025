@@ -1,0 +1,244 @@
+/* Estilos básicos para o layout no Google Sites */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f8f8f8; /* Pode ser ajustado ou removido, o Google Sites já tem um fundo */
+    color: #333;
+}
+
+.main-container {
+    max-width: 1200px; /* Aumentar largura para acomodar 3 colunas de botões */
+    margin: 0 auto; /* Centraliza o container */
+    padding: 20px;
+    background-color: #ffffff; /* Fundo do bloco de conteúdo */
+    border-radius: 8px; /* Cantos arredondados */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50; /* Cor do título principal */
+    margin-bottom: 30px;
+    font-size: 2.5em; /* Tamanho do título principal */
+}
+
+/* Estilo para o link "Voltar para a Página Principal" */
+.back-link {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.1em; /* Tamanho padrão */
+}
+.back-link a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.columns-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 3 colunas (ajustado para mais espaço) */
+    gap: 20px; /* Espaçamento entre as colunas de botões */
+    justify-content: center; /* Centraliza as colunas */
+}
+
+.button-column {
+    background-color: #f2f2f2; /* Fundo leve para cada coluna */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    display: flex; /* Para centralizar os botões verticalmente se houver espaço extra */
+    flex-direction: column;
+    gap: 10px; /* Espaçamento entre os botões dentro de cada coluna */
+    transition: all 0.3s ease; /* Transição para o destaque */
+}
+
+/* Estilo para os títulos das colunas */
+.column-title {
+    text-align: center;
+    color: #34495e; /* Cor do título da coluna */
+    margin-bottom: 15px; /* Espaço abaixo do título da coluna */
+    font-size: 1.5em; /* Tamanho do título da coluna */
+    font-weight: bold;
+    border-bottom: 2px solid #ccc; /* Linha debaixo do título da coluna */
+    padding-bottom: 10px;
+}
+
+.button {
+    display: block;
+    width: 100%; /* Ocupa a largura total da coluna */
+    padding: 12px 15px; /* Padding ligeiramente menor para caber mais */
+    background-color: #3498db; /* Cor de fundo do botão padrão (para Fundamental) */
+    color: white; /* Cor do texto do botão */
+    text-align: center;
+    text-decoration: none; /* Remove sublinhado do link */
+    border-radius: 5px; /* Cantos arredondados do botão */
+    font-size: 1.1em; /* Tamanho da fonte do botão, ligeiramente menor */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease; /* Adicionado opacity */
+    border: none; /* Remove borda padrão do botão */
+    cursor: pointer; /* Indica que é clicável */
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1); /* Sombra suave para o botão */
+}
+
+.button:hover {
+    background-color: #2980b9; /* Cor do botão ao passar o mouse */
+    transform: translateY(-2px); /* Pequeno efeito de elevação */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* Sombra mais proeminente no hover */
+}
+
+/* Estilo para botões inativos no filtro */
+.button.inactive-filtered {
+    opacity: 0.3; /* Opacidade baixa */
+    pointer-events: none; /* Impede cliques */
+    transform: translateY(0); /* Remove elevação no hover */
+    box-shadow: none; /* Remove sombra no hover */
+}
+
+/* Cores personalizadas para os botões */
+.button.creche-m-verde {
+    background-color: #2ecc71; /* Verde mais vibrante */
+}
+.button.creche-m-verde:hover {
+    background-color: #27ae60;
+}
+
+.button.creches {
+    background-color: #f39c12; /* Laranja para outras creches */
+}
+.button.creches:hover {
+    background-color: #e67e22;
+}
+
+/* O padrão é o azul #3498db para 'fundamental' */
+
+.button.etec {
+    background-color: #9b59b6; /* Roxo para ETEC */
+}
+.button.etec:hover {
+    background-color: #8e44ad;
+}
+
+/* Estilos para a legenda */
+.legend-container {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.legend-container p {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #34495e;
+    font-size: 1.1em;
+}
+
+.legend-item {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 0.9em;
+    margin: 0 5px 5px;
+    cursor: pointer; /* Indica que é clicável */
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.legend-item:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+}
+
+.legend-item.active {
+    box-shadow: 0 0 0 3px #27ae60; /* Borda de destaque quando ativo */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Botão para mostrar todos */
+.show-all-button {
+    background-color: #607d8b; /* Cinza escuro */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+.show-all-button:hover {
+    background-color: #455a64;
+}
+
+/* Estilo para a mensagem de filtro ativo */
+#filter-message {
+    margin-top: 10px;
+    font-size: 0.95em;
+    color: #555;
+    font-style: italic;
+}
+
+
+/* --- Media Queries para responsividade --- */
+@media (max-width: 992px) {
+    .columns-container {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduz para 2 colunas em telas médias */
+    }
+}
+
+@media (max-width: 600px) { /* Telas de celular menores (até 600px) */
+    .main-container {
+        padding: 15px; /* Reduz o padding do container principal */
+    }
+    h1 {
+        font-size: 1.8em; /* Título principal menor */
+        margin-bottom: 20px;
+    }
+    .back-link {
+        font-size: 0.9em; /* Link de voltar menor */
+        margin-bottom: 15px;
+    }
+    .columns-container {
+        grid-template-columns: 1fr; /* 1 coluna em telas muito pequenas */
+        gap: 15px; /* Reduz o espaçamento entre as colunas */
+    }
+    .button-column {
+        padding: 12px; /* Reduz o padding da coluna de botões */
+        gap: 8px; /* Reduz o espaçamento entre os botões dentro de cada coluna */
+    }
+    .column-title {
+        font-size: 1.2em; /* Ajusta tamanho do título da coluna em telas pequenas */
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+    }
+    .button {
+        font-size: 1em; /* Botão ligeiramente menor */
+        padding: 10px 12px;
+    }
+    .legend-item {
+        display: block; /* Itens da legenda em bloco em telas pequenas */
+        margin: 5px auto; /* Centraliza e adiciona margem vertical */
+        font-size: 0.85em; /* Legenda ligeiramente menor */
+        padding: 4px 8px;
+    }
+    .legend-container {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+    .legend-container p {
+        font-size: 1em;
+        margin-bottom: 8px;
+    }
+    .show-all-button {
+        padding: 7px 12px;
+        font-size: 0.9em;
+    }
+    #filter-message {
+        font-size: 0.85em;
+    }
+}
