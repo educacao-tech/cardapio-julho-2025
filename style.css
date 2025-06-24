@@ -15,7 +15,7 @@ body {
     /* Se quiser uma largura controlada, descomente e ajuste o valor: */
     /* max-width: 1200px; */
     margin: 0 auto; /* Centraliza o container na página */
-    padding: 20px;
+    padding: 10px 20px 20px 20px; /* Reduzido padding-top para 10px */
     background-color: #ffffff; /* Fundo branco para o bloco de conteúdo */
     border-radius: 8px; /* Cantos arredondados */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
@@ -25,6 +25,7 @@ body {
 h1 {
     text-align: center;
     color: #2c3e50; /* Cor escura para o título */
+    margin-top: 15px; /* Reduzido margin-top para 15px */
     margin-bottom: 30px;
     font-size: 2.5em; /* Tamanho da fonte do título */
 }
