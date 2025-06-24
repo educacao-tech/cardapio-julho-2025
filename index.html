@@ -4,7 +4,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio Julho 2025</title>
-    <link rel="stylesheet" href="style.css"> </head>
+    <style>
+        /* Garante que o elemento raiz HTML e o corpo da página ocupem 100% da largura e altura do navegador, removendo margens padrão e evitando rolagem horizontal indesejada. */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0; /* Remove margens externas padrão do navegador */
+            padding: 0; /* Remove preenchimento interno padrão do navegador */
+            overflow-x: hidden; /* Previne a barra de rolagem horizontal se o conteúdo for mais largo que a tela */
+        }
+
+        /* Estilos para o seu contêiner principal */
+        .main-container {
+            width: 100%; /* Faz com que o contêiner principal ocupe 100% da largura disponível */
+            max-width: none; /* Remove qualquer restrição de largura máxima que possa ter sido definida */
+            margin: 0 auto; /* Centraliza o contêiner. Embora não faça diferença visual com 100% de largura, é uma boa prática. */
+            padding: 20px; /* Adiciona um espaçamento interno de 20px em todos os lados para que o conteúdo não fique "colado" nas bordas da tela */
+            box-sizing: border-box; /* Garante que o padding seja incluído na largura total do elemento, evitando que ele transborde. */
+        }
+
+        /* Ajustes para o contêiner de colunas e as próprias colunas */
+        .columns-container {
+            display: flex; /* Mantém o layout de colunas flexível */
+            flex-wrap: wrap; /* Permite que as colunas se quebrem em múltiplas linhas em telas menores (responsividade) */
+            justify-content: space-around; /* Distribui as colunas uniformemente dentro do espaço disponível */
+            width: 100%; /* Garante que este contêiner também utilize 100% da largura */
+        }
+
+        .button-column {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            flex: 1; /* Permite que as colunas se expandam e contraiam para preencher o espaço disponível */
+            min-width: 280px; /* Define uma largura mínima para cada coluna, útil em telas pequenas para evitar que fiquem muito estreitas */
+            margin: 10px; /* Adiciona um espaçamento de 10px entre as colunas */
+            box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura/altura total */
+        }
+
+        .button-column .column-title {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        /* Estilos gerais para os botões */
+        .button {
+            display: block;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Cores específicas para os botões de filtro */
+        .button.creche-m-verde { background-color: #2ecc71; }
+        .button.creche-m-verde:hover { background-color: #27ae60; }
+        .button.creches { background-color: #f39c12; }
+        .button.creches:hover { background-color: #e67e22; }
+        .button.fundamental { background-color: #3498db; }
+        .button.fundamental:hover { background-color: #2980b9; }
+        .button.etec { background-color: #9b59b6; }
+        .button.etec:hover { background-color: #8e44ad; }
+
+        /* Estilos para o link "Voltar" */
+        .back-link {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Estilos para a legenda de filtro */
+        .legend-container {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #e0f2f7; /* Cor de fundo suave para a legenda */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .legend-container p {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .legend-item {
+            display: inline-block;
+            color: white;
+            padding: 8px 12px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .legend-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .legend-item.active {
+            border: 2px solid #555; /* Destaque para o item de filtro ativo */
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .show-all-button {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+
+        .show-all-button:hover {
+            background-color: #5a6268;
+        }
+
+        #filter-message {
+            margin-top: 10px;
+            font-style: italic;
+            color: #555;
+        }
+
+        /* Estilos para os botões desativados pelo filtro */
+        .inactive-filtered {
+            display: none; /* Esconde os botões que não correspondem ao filtro */
+        }
+
+        /* Estilos para a semana atual em destaque (JavaScript aplica inline, mas bom ter aqui caso necessário) */
+        /*
+        .current-week-highlight {
+            border: 2px solid #27ae60;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            background-color: #e6ffe6;
+        }
+        */
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            .columns-container {
+                flex-direction: column; /* Em telas menores, as colunas empilham */
+                align-items: center; /* Centraliza as colunas empilhadas */
+            }
+
+            .button-column {
+                width: 95%; /* As colunas ocupam quase a largura total em telas pequenas */
+                margin: 10px 0; /* Ajusta a margem para empilhamento */
+            }
+
+            .legend-item, .show-all-button {
+                display: block; /* Itens da legenda e botão empilham em telas menores */
+                width: calc(100% - 20px); /* Ocupam a largura total menos o padding */
+                margin: 5px auto; /* Centraliza e adiciona margem vertical */
+            }
+        }
+    </style>
+</head>
 <body>
 
     <div class="main-container">
