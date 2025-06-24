@@ -4,285 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio Julho 2025</title>
-    <style>
-        /* Estilos básicos para o layout no Google Sites */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0; /* Remover margem padrão do body */
-            padding: 0;
-            background-color: #f8f8f8;
-            color: #333;
-        }
-
-        .main-container {
-            /* Se você quer largura total, mantenha max-width comentado ou remova. */
-            /* Se quer largura controlada, descomente e ajuste o valor. */
-            /* max-width: 1200px; */
-            margin: 0 auto; /* Centraliza o container */
-            padding: 20px;
-            background-color: #ffffff; /* Fundo do bloco de conteúdo */
-            border-radius: 8px; /* Cantos arredondados */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
-        }
-
-        h1 {
-            text-align: center;
-            color: #2c3e50; /* Cor do título principal */
-            margin-bottom: 30px;
-            font-size: 2.5em; /* Tamanho do título principal */
-        }
-
-        /* Estilo para o link "Voltar para a Página Principal" */
-        .back-link {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.1em; /* Tamanho padrão */
-        }
-        .back-link a {
-            text-decoration: none;
-            color: #3498db;
-            font-weight: bold;
-        }
-
-        .columns-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .button-column {
-            background-color: #f2f2f2;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            transition: all 0.3s ease;
-            position: relative; /* Para o selo de semana atual */
-        }
-
-        /* Estilo para o selo de semana atual */
-        .current-week-label {
-            position: absolute;
-            top: 0px;
-            right: 0px;
-            background-color: #27ae60; /* Verde */
-            color: white;
-            padding: 5px 10px;
-            font-size: 0.8em;
-            font-weight: bold;
-            border-top-right-radius: 8px;
-            border-bottom-left-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            z-index: 10;
-        }
-
-        /* Animação de pulso para a sombra da semana atual */
-        @keyframes pulse-shadow {
-            0% { box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-            50% { box-shadow: 0 6px 12px rgba(0,0,0,0.25); }
-            100% { box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-        }
-
-        .button-column.current-week {
-            border: 2px solid #27ae60 !important; /* Mais forte */
-            background-color: #e6ffe6 !important; /* Fundo mais claro */
-            animation: pulse-shadow 2s infinite ease-in-out; /* Aplica a animação */
-        }
-
-        /* Estilo para os títulos das colunas */
-        .column-title {
-            text-align: center;
-            color: #34495e;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-            font-weight: bold;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 10px;
-        }
-
-        .button {
-            display: block;
-            width: 100%;
-            padding: 12px 15px;
-            background-color: #3498db;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
-        }
-
-        .button:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-        }
-
-        /* Estilo para botões inativos no filtro */
-        .button.inactive-filtered {
-            opacity: 0.3;
-            pointer-events: none;
-            transform: translateY(0);
-            box-shadow: none;
-        }
-
-        /* Cores personalizadas para os botões */
-        .button.creche-m-verde {
-            background-color: #2ecc71;
-        }
-        .button.creche-m-verde:hover {
-            background-color: #27ae60;
-        }
-
-        .button.creches {
-            background-color: #f39c12;
-        }
-        .button.creches:hover {
-            background-color: #e67e22;
-        }
-
-        .button.etec {
-            background-color: #9b59b6;
-        }
-        .button.etec:hover {
-            background-color: #8e44ad;
-        }
-
-        /* Estilos para a legenda */
-        .legend-container {
-            text-align: center;
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-        }
-
-        .legend-container p {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #34495e;
-            font-size: 1.1em;
-        }
-
-        .legend-item {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 3px;
-            color: white;
-            font-size: 0.9em;
-            margin: 0 5px 5px;
-            cursor: pointer;
-            transition: opacity 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .legend-item:hover {
-            opacity: 0.8;
-            transform: translateY(-1px);
-        }
-
-        .legend-item.active {
-            box-shadow: 0 0 0 3px #27ae60;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Botão para mostrar todos */
-        .show-all-button {
-            background-color: #607d8b;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: background-color 0.3s ease;
-        }
-        .show-all-button:hover {
-            background-color: #455a64;
-        }
-
-        /* Estilo para a mensagem de filtro ativo */
-        #filter-message {
-            margin-top: 10px;
-            font-size: 0.95em;
-            color: #555;
-            font-style: italic;
-        }
-
-        /* --- Media Queries para responsividade --- */
-        @media (max-width: 992px) {
-            .columns-container {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-        }
-
-        @media (max-width: 600px) {
-            .main-container {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 1.8em;
-                margin-bottom: 20px;
-            }
-            .back-link {
-                font-size: 0.9em;
-                margin-bottom: 15px;
-            }
-            .columns-container {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            .button-column {
-                padding: 12px;
-                gap: 8px;
-            }
-            .column-title {
-                font-size: 1.2em;
-                margin-bottom: 10px;
-                padding-bottom: 8px;
-            }
-            .button {
-                font-size: 1em;
-                padding: 10px 12px;
-            }
-            .legend-item {
-                display: block;
-                margin: 5px auto;
-                font-size: 0.85em;
-                padding: 4px 8px;
-            }
-            .legend-container {
-                padding: 12px;
-                margin-bottom: 20px;
-            }
-            .legend-container p {
-                font-size: 1em;
-                margin-bottom: 8px;
-            }
-            .show-all-button {
-                padding: 7px 12px;
-                font-size: 0.9em;
-            }
-            #filter-message {
-                font-size: 0.85em;
-            }
-            .current-week-label {
-                padding: 3px 8px;
-                font-size: 0.7em;
-            }
-        }
-    </style>
+    <!-- Link para o arquivo CSS externo. No Google Sites, este arquivo precisaria estar hospedado publicamente. -->
+    <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
 
@@ -437,7 +160,8 @@
             // --- Atribui os links dinamicamente e melhora feedback para links vazios ---
             function applyLinksToButtons() {
                 const currentYear = new Date().getFullYear().toString();
-                const currentMonth = new Date().toLocaleString('pt-BR', { month: 'long' }).toLowerCase(); // Ex: "julho"
+                // Usar 'pt-BR' para garantir o nome do mês em português (ex: "junho")
+                const currentMonthName = new Date().toLocaleString('pt-BR', { month: 'long' }).toLowerCase(); 
 
                 allButtons.forEach(button => {
                     const week = button.dataset.week;
@@ -446,18 +170,18 @@
 
                     let foundLink = null;
                     // Tenta acessar o link na nova estrutura: menuLinks[ano][mes][semana][tipo]
-                    if (menuLinks[currentYear] && menuLinks[currentYear][currentMonth] && menuLinks[currentYear][currentMonth][week]) {
+                    if (menuLinks[currentYear] && menuLinks[currentYear][currentMonthName] && menuLinks[currentYear][currentMonthName][week]) {
                         // Tenta encontrar o tipo exato primeiro
-                        if (menuLinks[currentYear][currentMonth][week][type]) {
-                            foundLink = menuLinks[currentYear][currentMonth][week][type];
+                        if (menuLinks[currentYear][currentMonthName][week][type]) {
+                            foundLink = menuLinks[currentYear][currentMonthName][week][type];
                         } else {
                             // Se não encontrar o tipo exato, procura por um tipo que comece com o valor
                             // Isso é útil para agrupar os 'fundamental-grupo1', 'fundamental-grupo2' etc.
                             // Apenas para tipos que começam com 'fundamental'
                             if (type.startsWith('fundamental')) {
-                                for (const key in menuLinks[currentYear][currentMonth][week]) {
+                                for (const key in menuLinks[currentYear][currentMonthName][week]) {
                                     if (key.startsWith(type)) {
-                                        foundLink = menuLinks[currentYear][currentMonth][week][key];
+                                        foundLink = menuLinks[currentYear][currentMonthName][week][key];
                                         break;
                                     }
                                 }
@@ -501,11 +225,13 @@
                     if (label) label.remove(); // Remove selo se existir
                 });
 
-                // Lógica de destaque para o mês e ano corrente (adaptada para a nova estrutura de dados)
-                // Usando `month === 7 && year === 2025` para focar especificamente no cardápio de Julho de 2025
-                if (month === 7 && year === 2025) {
+                // Lógica de destaque para o mês e ano corrente
+                // AJUSTE ESTA LÓGICA SEMPRE QUE O MÊS/ANO PRINCIPAL DO CARDÁPIO MUDAR.
+                // Atualmente configurado para Julho de 2025.
+                if (month === 7 && year === 2025) { // Para o cardápio de Julho de 2025
                     let currentWeekColumnId = '';
 
+                    // Lógica para determinar a semana com base na data atual
                     if (dayOfMonth >= 1 && dayOfMonth <= 4) {
                         currentWeekColumnId = 'semana1';
                     } else if (dayOfMonth >= 7 && dayOfMonth <= 11) {
@@ -542,24 +268,20 @@
             // --- Funcionalidade de Filtragem ---
             function filterButtons(filterType, filterName = '') {
                 allButtons.forEach(button => {
-                    // Se o botão não tiver um link válido e o filtro não for 'all', mantenha-o opaco.
-                    // Isso evita que botões "Em breve!" reapareçam ao filtrar se não tiverem o tipo exato.
-                    const hasValidLink = !(button.style.pointerEvents === 'none'); // Verifica se está desabilitado por não ter link
+                    // Verifica se o botão tem um link válido (não está "Em breve!")
+                    const hasValidLink = !(button.style.pointerEvents === 'none'); 
 
                     if (filterType === 'all') {
-                        button.classList.remove('inactive-filtered'); // Mostra todos
+                        // Ao mostrar todos, exibe todos os botões, mesmo os "Em breve!"
+                        button.classList.remove('inactive-filtered');
                     } else if (button.dataset.type.startsWith(filterType)) {
-                         button.classList.remove('inactive-filtered');
+                        // Se o filtro corresponder, exibe o botão (desde que não seja um "Em breve!" escondido pelo filtro anterior)
+                        button.classList.remove('inactive-filtered');
                     } else {
+                        // Se o filtro não corresponder, esconde o botão
                         button.classList.add('inactive-filtered');
                     }
-
-                    // Se não tiver link e não for "mostrar todos", garanta que a opacidade se mantenha
-                    if (!hasValidLink && filterType !== 'all') {
-                         button.classList.add('inactive-filtered');
-                    }
                 });
-
 
                 if (filterType === 'all') {
                     filterMessage.textContent = '';
