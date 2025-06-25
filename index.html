@@ -11,7 +11,8 @@
 
     <div class="main-container">
         <p class="back-link">
-            <a href="https://sites.google.com/educacao.batatais.sp.gov.br/seceduc/in%c3%adcio">← Voltar para a Página Principal.</a>
+            <!-- Texto alterado para remover a seta, que será adicionada via CSS -->
+            <a href="https://sites.google.com/educacao.batatais.sp.gov.br/seceduc/in%c3%adcio">Voltar para a Página Principal.</a>
         </p>
         <h1>Cardápio Julho 2025</h1>
 
@@ -34,7 +35,7 @@
                 <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 1ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
                 <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 1ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
                 <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 1ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, Castelo, Washington na 1ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
+                <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 1ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
                 <a href="#" class="button etec" data-week="semana1" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 1ª Semana de Julho">ETEC - PAULA SOUZA</a>
             </div>
 
@@ -70,7 +71,7 @@
                 <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 4ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
                 <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 4ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
                 <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 4ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, Castelo, Washington na 4ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
+                <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 4ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
                 <a href="#" class="button etec" data-week="semana4" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 4ª Semana de Julho">ETEC - PAULA SOUZA</a>
             </div>
 
@@ -160,24 +161,18 @@
             // --- Atribui os links dinamicamente e melhora feedback para links vazios ---
             function applyLinksToButtons() {
                 const currentYear = new Date().getFullYear().toString();
-                // Usar 'pt-BR' para garantir o nome do mês em português (ex: "junho")
                 const currentMonthName = new Date().toLocaleString('pt-BR', { month: 'long' }).toLowerCase(); 
 
                 allButtons.forEach(button => {
                     const week = button.dataset.week;
                     const type = button.dataset.type;
-                    const originalLabel = button.getAttribute('aria-label'); // Guarda o label original
+                    const originalLabel = button.getAttribute('aria-label');
 
                     let foundLink = null;
-                    // Tenta acessar o link na nova estrutura: menuLinks[ano][mes][semana][tipo]
                     if (menuLinks[currentYear] && menuLinks[currentYear][currentMonthName] && menuLinks[currentYear][currentMonthName][week]) {
-                        // Tenta encontrar o tipo exato primeiro
                         if (menuLinks[currentYear][currentMonthName][week][type]) {
                             foundLink = menuLinks[currentYear][currentMonthName][week][type];
                         } else {
-                            // Se não encontrar o tipo exato, procura por um tipo que comece com o valor
-                            // Isso é útil para agrupar os 'fundamental-grupo1', 'fundamental-grupo2' etc.
-                            // Apenas para tipos que começam com 'fundamental'
                             if (type.startsWith('fundamental')) {
                                 for (const key in menuLinks[currentYear][currentMonthName][week]) {
                                     if (key.startsWith(type)) {
@@ -189,24 +184,23 @@
                         }
                     }
 
-                    if (foundLink && foundLink.trim() !== '' && foundLink.startsWith('http')) { // Garante que é um link válido
+                    if (foundLink && foundLink.trim() !== '' && foundLink.startsWith('http')) {
                         button.href = foundLink;
-                        button.style.pointerEvents = ''; // Habilita o clique
-                        button.style.opacity = '1';     // Remove a opacidade
-                        button.title = originalLabel; // Restaura o título original
-                        button.textContent = button.dataset.originalText || button.textContent; // Restaura texto original
-                        button.classList.remove('no-link'); // Remove classe se houver
+                        button.style.pointerEvents = '';
+                        button.style.opacity = '1';
+                        button.title = originalLabel;
+                        button.textContent = button.dataset.originalText || button.textContent;
+                        button.classList.remove('no-link');
                     } else {
-                        // Guarda o texto original do botão antes de alterá-lo
                         if (!button.dataset.originalText) {
                             button.dataset.originalText = button.textContent;
                         }
-                        button.href = "#"; // Evita navegação inválida
-                        button.style.pointerEvents = 'none'; // Desabilita o clique
-                        button.style.opacity = '0.5'; // Deixa o botão mais claro
-                        button.title = "Cardápio não disponível ou em breve."; // Informa ao usuário
-                        button.textContent = "Em breve!"; // Altera o texto visível no botão
-                        button.classList.add('no-link'); // Adiciona uma classe para estilização futura se quiser
+                        button.href = "#";
+                        button.style.pointerEvents = 'none';
+                        button.style.opacity = '0.5';
+                        button.title = "Cardápio não disponível ou em breve.";
+                        button.textContent = "Em breve!";
+                        button.classList.add('no-link');
                     }
                 });
             }
@@ -215,23 +209,18 @@
             function highlightCurrentWeek() {
                 const today = new Date();
                 const dayOfMonth = today.getDate();
-                const month = today.getMonth() + 1; // getMonth() retorna de 0 a 11
+                const month = today.getMonth() + 1;
                 const year = today.getFullYear();
 
-                // Resetar destaques anteriores
                 document.querySelectorAll('.button-column').forEach(col => {
                     col.classList.remove('current-week');
                     const label = col.querySelector('.current-week-label');
-                    if (label) label.remove(); // Remove selo se existir
+                    if (label) label.remove();
                 });
 
-                // Lógica de destaque para o mês e ano corrente
-                // AJUSTE ESTA LÓGICA SEMPRE QUE O MÊS/ANO PRINCIPAL DO CARDÁPIO MUDAR.
-                // Atualmente configurado para Julho de 2025.
-                if (month === 7 && year === 2025) { // Para o cardápio de Julho de 2025
+                if (month === 7 && year === 2025) { 
                     let currentWeekColumnId = '';
 
-                    // Lógica para determinar a semana com base na data atual
                     if (dayOfMonth >= 1 && dayOfMonth <= 4) {
                         currentWeekColumnId = 'semana1';
                     } else if (dayOfMonth >= 7 && dayOfMonth <= 11) {
@@ -247,15 +236,13 @@
                     if (currentWeekColumnId) {
                         const currentWeekColumn = document.getElementById(currentWeekColumnId);
                         if (currentWeekColumn) {
-                            currentWeekColumn.classList.add('current-week'); // Aplica a nova classe de destaque
+                            currentWeekColumn.classList.add('current-week');
 
-                            // Adiciona o selo "SEMANA ATUAL"
                             const label = document.createElement('span');
                             label.classList.add('current-week-label');
                             label.textContent = 'SEMANA ATUAL';
-                            currentWeekColumn.prepend(label); // Adiciona como primeiro elemento da coluna
+                            currentWeekColumn.prepend(label);
 
-                            // Move a coluna da semana atual para ser a primeira dentro do container
                             const columnsContainer = document.querySelector('.columns-container');
                             if (columnsContainer) {
                                 columnsContainer.prepend(currentWeekColumn);
@@ -268,33 +255,31 @@
             // --- Funcionalidade de Filtragem ---
             function filterButtons(filterType, filterName = '') {
                 allButtons.forEach(button => {
-                    // Verifica se o botão tem um link válido (não está "Em breve!")
                     const hasValidLink = !(button.style.pointerEvents === 'none'); 
 
                     if (filterType === 'all') {
-                        // Ao mostrar todos, exibe todos os botões, mesmo os "Em breve!"
                         button.classList.remove('inactive-filtered');
                     } else if (button.dataset.type.startsWith(filterType)) {
-                        // Se o filtro corresponder, exibe o botão (desde que não seja um "Em breve!" escondido pelo filtro anterior)
                         button.classList.remove('inactive-filtered');
                     } else {
-                        // Se o filtro não corresponder, esconde o botão
                         button.classList.add('inactive-filtered');
                     }
                 });
 
+                // Controla a opacidade da mensagem de filtro via JS para a transição
                 if (filterType === 'all') {
-                    filterMessage.textContent = '';
+                    filterMessage.style.opacity = '0'; // Esconde a mensagem
+                    filterMessage.textContent = ''; // Limpa o texto após a transição
                 } else {
                     filterMessage.textContent = `Filtrando por: ${filterName}`;
+                    filterMessage.style.opacity = '1'; // Mostra a mensagem
                 }
             }
 
-            // Adiciona evento de clique para cada item da legenda
             legendItems.forEach(item => {
                 item.addEventListener('click', function() {
-                    legendItems.forEach(li => li.classList.remove('active')); // Remove o destaque de todos os itens da legenda
-                    this.classList.add('active'); // Adiciona destaque ao item clicado
+                    legendItems.forEach(li => li.classList.remove('active'));
+                    this.classList.add('active');
 
                     const filterType = this.dataset.filter;
                     const filterName = this.textContent;
@@ -302,16 +287,16 @@
                 });
             });
 
-            // Adiciona evento de clique para o botão "Mostrar Todos"
             showAllButton.addEventListener('click', function() {
-                legendItems.forEach(li => li.classList.remove('active')); // Remove o destaque da legenda
-                filterButtons('all'); // Mostra todos os botões
+                legendItems.forEach(li => li.classList.remove('active'));
+                filterButtons('all');
             });
 
-            // Chama as funções ao carregar a página
             applyLinksToButtons();
             highlightCurrentWeek();
-            filterButtons('all'); // Garante que todos os botões estão visíveis inicialmente
+            // Inicializa a mensagem de filtro escondida
+            filterMessage.style.opacity = '0';
+            filterButtons('all'); 
         });
     </script>
 
