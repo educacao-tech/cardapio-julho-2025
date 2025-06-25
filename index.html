@@ -47,7 +47,7 @@
                 <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 2ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
                 <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 2ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
                 <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 2ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, Castelo, Washington na 2ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
+                <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 2ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
                 <a href="#" class="button etec" data-week="semana2" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 2ª Semana de Julho">ETEC - PAULA SOUZA</a>
             </div>
 
@@ -59,7 +59,7 @@
                 <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 3ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
                 <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 3ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
                 <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 3ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, Castelo, Washington na 3ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
+                <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 3ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
                 <a href="#" class="button etec" data-week="semana3" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 3ª Semana de Julho">ETEC - PAULA SOUZA</a>
             </div>
 
@@ -160,8 +160,10 @@
 
             // --- Atribui os links dinamicamente e melhora feedback para links vazios ---
             function applyLinksToButtons() {
-                const currentYear = new Date().getFullYear().toString();
-                const currentMonthName = new Date().toLocaleString('pt-BR', { month: 'long' }).toLowerCase(); 
+                // Definimos o ano e mês alvo para "Julho de 2025" diretamente,
+                // já que a página é especificamente para esse cardápio.
+                const targetYear = "2025";
+                const targetMonthName = "julho"; // Certifique-se que isso corresponde à chave em menuLinks
 
                 allButtons.forEach(button => {
                     const week = button.dataset.week;
@@ -169,14 +171,14 @@
                     const originalLabel = button.getAttribute('aria-label');
 
                     let foundLink = null;
-                    if (menuLinks[currentYear] && menuLinks[currentYear][currentMonthName] && menuLinks[currentYear][currentMonthName][week]) {
-                        if (menuLinks[currentYear][currentMonthName][week][type]) {
-                            foundLink = menuLinks[currentYear][currentMonthName][week][type];
+                    if (menuLinks[targetYear] && menuLinks[targetYear][targetMonthName] && menuLinks[targetYear][targetMonthName][week]) {
+                        if (menuLinks[targetYear][targetMonthName][week][type]) {
+                            foundLink = menuLinks[targetYear][targetMonthName][week][type];
                         } else {
                             if (type.startsWith('fundamental')) {
-                                for (const key in menuLinks[currentYear][currentMonthName][week]) {
+                                for (const key in menuLinks[targetYear][targetMonthName][week]) {
                                     if (key.startsWith(type)) {
-                                        foundLink = menuLinks[currentYear][currentMonthName][week][key];
+                                        foundLink = menuLinks[targetYear][targetMonthName][week][key];
                                         break;
                                     }
                                 }
@@ -184,23 +186,24 @@
                         }
                     }
 
-                    if (foundLink && foundLink.trim() !== '' && foundLink.startsWith('http')) {
+                    if (foundLink && foundLink.trim() !== '' && foundLink.startsWith('http')) { // Garante que é um link válido
                         button.href = foundLink;
-                        button.style.pointerEvents = '';
-                        button.style.opacity = '1';
-                        button.title = originalLabel;
-                        button.textContent = button.dataset.originalText || button.textContent;
-                        button.classList.remove('no-link');
+                        button.style.pointerEvents = ''; // Habilita o clique
+                        button.style.opacity = '1';     // Remove a opacidade
+                        button.title = originalLabel; // Restaura o título original
+                        button.textContent = button.dataset.originalText || button.textContent; // Restaura texto original
+                        button.classList.remove('no-link'); // Remove classe se houver
                     } else {
+                        // Guarda o texto original do botão antes de alterá-lo
                         if (!button.dataset.originalText) {
                             button.dataset.originalText = button.textContent;
                         }
-                        button.href = "#";
-                        button.style.pointerEvents = 'none';
-                        button.style.opacity = '0.5';
-                        button.title = "Cardápio não disponível ou em breve.";
-                        button.textContent = "Em breve!";
-                        button.classList.add('no-link');
+                        button.href = "#"; // Evita navegação inválida
+                        button.style.pointerEvents = 'none'; // Desabilita o clique
+                        button.style.opacity = '0.5'; // Deixa o botão mais claro
+                        button.title = "Cardápio não disponível ou em breve."; // Informa ao usuário
+                        button.textContent = "Em breve!"; // Altera o texto visível no botão
+                        button.classList.add('no-link'); // Adiciona uma classe para estilização futura se quiser
                     }
                 });
             }
