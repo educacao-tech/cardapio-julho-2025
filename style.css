@@ -98,6 +98,13 @@ h1 {
     color: var(--primary-hover-color);
     text-decoration: underline; /* Adiciona sublinhado no hover */
 }
+/* Iconografia no Link "Voltar para a Página Principal" */
+.back-link a::before {
+    content: '← '; /* Adiciona uma seta antes do texto */
+    display: inline-block;
+    margin-right: 5px;
+    font-weight: bold; /* Garante que a seta seja bold também */
+}
 
 
 /* Container para as colunas de botões (usando CSS Grid para responsividade) */
@@ -118,7 +125,7 @@ h1 {
     display: flex;
     flex-direction: column; /* Botões empilhados verticalmente */
     gap: var(--spacing-s); /* Espaçamento entre os botões dentro da coluna */
-    transition: all 0.3s ease; /* Transição suave para o destaque da semana atual e hover */
+    transition: all 0.3s ease, transform 0.3s ease; /* Transição suave para o destaque da semana atual e hover */
     position: relative; /* Necessário para posicionar o selo "SEMANA ATUAL" */
 }
 
@@ -271,7 +278,7 @@ h1 {
     font-size: 0.9em;
     margin: 0 var(--spacing-xs) var(--spacing-xs);
     cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.2s ease;
+    transition: opacity 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Adicionada transição para box-shadow */
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
@@ -282,9 +289,9 @@ h1 {
 
 /* Estilo para o item da legenda ativo (selecionado) */
 .legend-item.active {
-    box-shadow: 0 0 0 3px var(--highlight-color); /* Borda de destaque verde */
+    box-shadow: 0 0 0 3px var(--highlight-color), 0 2px 5px rgba(0,0,0,0.2); /* Adiciona uma segunda sombra */
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-2px); /* Elevação sutil */
 }
 
 /* Botão para mostrar todos os cardápios (remover filtros) */
@@ -309,6 +316,8 @@ h1 {
     font-size: 0.95em;
     color: var(--text-color-light);
     font-style: italic;
+    opacity: 0; /* Começa invisível, JS controla */
+    transition: opacity 0.3s ease-out; /* Adiciona transição de opacidade */
 }
 
 /* --- Media Queries para responsividade --- */
@@ -340,6 +349,10 @@ h1 {
     .button-column {
         padding: var(--spacing-s); /* Reduz o padding da coluna de botões */
         gap: var(--spacing-s); /* Reduz o espaçamento entre os botões dentro de cada coluna */
+    }
+    /* Refinamento da Borda da Semana Atual no Mobile */
+    .button-column.current-week {
+        border-width: 1.5px !important; /* Borda mais fina no mobile */
     }
     .column-title {
         font-size: 1.2em; /* Ajusta tamanho do título da coluna em telas pequenas */
