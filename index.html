@@ -3,305 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardápio Julho 2025</title>
-    <!-- Link para o arquivo CSS externo. No Google Sites, este arquivo precisaria estar hospedado publicamente. -->
-    <link rel="stylesheet" href="style.css"> 
-</head>
+    <title>Cardápios das Escolas</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
 <body>
-
     <div class="main-container">
-        <p class="back-link">
-            <!-- Texto alterado para remover a seta, que será adicionada via CSS -->
-            <a href="https://sites.google.com/educacao.batatais.sp.gov.br/seceduc/in%c3%adcio">Voltar para a Página Principal.</a>
-        </p>
-        <h1>Cardápio Julho 2025</h1>
+        <h1>Cardápios das Escolas</h1>
+
+        <div class="back-link">
+            <a href="URL_DA_SUA_PAGINA_PRINCIPAL" aria-label="Voltar para a Página Principal">Voltar para a Página Principal</a>
+        </div>
 
         <div class="legend-container">
-            <p>Filtrar Cardápios por Instituição:</p>
-            <span class="legend-item" style="background-color: #2ecc71;" data-filter="creche-m-verde" role="button" tabindex="0" aria-label="Filtrar por Creche M. Verde">CRECHE M.VERDE</span>
-            <span class="legend-item" style="background-color: #f39c12;" data-filter="creches" role="button" tabindex="0" aria-label="Filtrar por Outras Creches">CRECHES</span>
-            <span class="legend-item" style="background-color: #3498db;" data-filter="fundamental" role="button" tabindex="0" aria-label="Filtrar por Escolas Fundamentais">Fundamental</span>
-            <span class="legend-item" style="background-color: #9b59b6;" data-filter="etec" role="button" tabindex="0" aria-label="Filtrar por ETEC">ETEC</span>
-            <button class="show-all-button">Mostrar Todos</button>
-            <div id="filter-message" style="text-align: center;"></div>
+            <p>Filtrar por instituição:</p>
+            <div class="legend-items">
+                <span class="legend-item creche-m-verde" data-filter="creche-m-verde" role="button" tabindex="0" aria-label="Filtrar por Creche Mundo Verde">Creche M. Verde</span>
+                <span class="legend-item creches" data-filter="creches" role="button" tabindex="0" aria-label="Filtrar por Creches">Creches</span>
+                <span class="legend-item" data-filter="fundamental" role="button" tabindex="0" aria-label="Filtrar por Fundamental">Fundamental</span>
+                <span class="legend-item etec" data-filter="etec" role="button" tabindex="0" aria-label="Filtrar por ETEC">ETEC</span>
+            </div>
+            <button class="show-all-button" aria-label="Mostrar todos os cardápios">Mostrar Todos</button>
+            <p id="filter-message" aria-live="polite"></p>
         </div>
 
         <div class="columns-container">
             <div class="button-column" id="semana1">
-                <h2 class="column-title">1ª SEM - 01 a 04 JULHO</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana1" data-type="creche-m-verde" aria-label="Ver cardápio da Creche M. Verde para a 1ª Semana de Julho">CRECHE M.VERDE</a>
-                <a href="#" class="button creches" data-week="semana1" data-type="creches" aria-label="Ver cardápio das Creches para a 1ª Semana de Julho">CRECHES</a>
-                <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-grupo1" title="Escolas Fundamentais: Braga, Caic, Célia, Alzira, Padre" aria-label="Ver cardápio Fundamental para Braga, Caic, Célia, Alzira, Padre na 1ª Semana de Julho">BRAGA, CAIC, CÉLIA, ALZIRA, PADRE</a>
-                <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 1ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
-                <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 1ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
-                <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 1ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana1" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 1ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
-                <a href="#" class="button etec" data-week="semana1" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 1ª Semana de Julho">ETEC - PAULA SOUZA</a>
+                <h2 class="column-title">Semana 1</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana1" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 1">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana1" data-type="creches" aria-label="Cardápio Creches Semana 1">Creches</a>
+                <a href="#" class="button" data-week="semana1" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 1">Fundamental Grupo 1</a>
+                <a href="#" class="button" data-week="semana1" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 1">Fundamental Grupo 2</a>
+                <a href="#" class="button" data-week="semana1" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 1">Fundamental Grupo 3</a>
+                <a href="#" class="button" data-week="semana1" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 1">Fundamental Esther</a>
+                <a href="#" class="button" data-week="semana1" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 1">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana1" data-type="etec" aria-label="Cardápio ETEC Semana 1">ETEC</a>
             </div>
 
             <div class="button-column" id="semana2">
-                <h2 class="column-title">2ª SEM - 07 a 11 JULHO</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana2" data-type="creche-m-verde" aria-label="Ver cardápio da Creche M. Verde para a 2ª Semana de Julho">CRECHE M.VERDE</a>
-                <a href="#" class="button creches" data-week="semana2" data-type="creches" aria-label="Ver cardápio das Creches para a 2ª Semana de Julho">CRECHES</a>
-                <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-grupo1" title="Escolas Fundamentais: Braga, Caic, Célia, Alzira, Padre" aria-label="Ver cardápio Fundamental para Braga, Caic, Célia, Alzira, Padre na 2ª Semana de Julho">BRAGA, CAIC, CÉLIA, ALZIRA, PADRE</a>
-                <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 2ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
-                <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 2ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
-                <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 2ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana2" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 2ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
-                <a href="#" class="button etec" data-week="semana2" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 2ª Semana de Julho">ETEC - PAULA SOUZA</a>
+                <h2 class="column-title">Semana 2</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana2" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 2">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana2" data-type="creches" aria-label="Cardápio Creches Semana 2">Creches</a>
+                <a href="#" class="button" data-week="semana2" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 2">Fundamental Grupo 1</a>
+                <a href="#" class="button" data-week="semana2" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 2">Fundamental Grupo 2</a>
+                <a href="#" class="button" data-week="semana2" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 2">Fundamental Grupo 3</a>
+                <a href="#" class="button" data-week="semana2" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 2">Fundamental Esther</a>
+                <a href="#" class="button" data-week="semana2" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 2">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana2" data-type="etec" aria-label="Cardápio ETEC Semana 2">ETEC</a>
             </div>
 
             <div class="button-column" id="semana3">
-                <h2 class="column-title">3ª SEM - 14 a 18 JULHO</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana3" data-type="creche-m-verde" aria-label="Ver cardápio da Creche M. Verde para a 3ª Semana de Julho">CRECHE M.VERDE</a>
-                <a href="#" class="button creches" data-week="semana3" data-type="creches" aria-label="Ver cardápio das Creches para a 3ª Semana de Julho">CRECHES</a>
-                <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-grupo1" title="Escolas Fundamentais: Braga, Caic, Célia, Alzira, Padre" aria-label="Ver cardápio Fundamental para Braga, Caic, Célia, Alzira, Padre na 3ª Semana de Julho">BRAGA, CAIC, CÉLIA, ALZIRA, PADRE</a>
-                <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 3ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
-                <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 3ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
-                <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 3ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana3" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 3ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
-                <a href="#" class="button etec" data-week="semana3" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 3ª Semana de Julho">ETEC - PAULA SOUZA</a>
+                <h2 class="column-title">Semana 3</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana3" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 3">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana3" data-type="creches" aria-label="Cardápio Creches Semana 3">Creches</a>
+                <a href="#" class="button" data-week="semana3" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 3">Fundamental Grupo 1</a>
+                <a href="#" class="button" data-week="semana3" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 3">Fundamental Grupo 2</a>
+                <a href="#" class="button" data-week="semana3" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 3">Fundamental Grupo 3</a>
+                <a href="#" class="button" data-week="semana3" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 3">Fundamental Esther</a>
+                <a href="#" class="button" data-week="semana3" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 3">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana3" data-type="etec" aria-label="Cardápio ETEC Semana 3">ETEC</a>
             </div>
 
             <div class="button-column" id="semana4">
-                <h2 class="column-title">4ª SEM - 21 a 25 JULHO</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana4" data-type="creche-m-verde" aria-label="Ver cardápio da Creche M. Verde para a 4ª Semana de Julho">CRECHE M.VERDE</a>
-                <a href="#" class="button creches" data-week="semana4" data-type="creches" aria-label="Ver cardápio das Creches para a 4ª Semana de Julho">CRECHES</a>
-                <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-grupo1" title="Escolas Fundamentais: Braga, Caic, Célia, Alzira, Padre" aria-label="Ver cardápio Fundamental para Braga, Caic, Célia, Alzira, Padre na 4ª Semana de Julho">BRAGA, CAIC, CÉLIA, ALZIRA, PADRE</a>
-                <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 4ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
-                <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 4ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
-                <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 4ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana4" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 4ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
-                <a href="#" class="button etec" data-week="semana4" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 4ª Semana de Julho">ETEC - PAULA SOUZA</a>
+                <h2 class="column-title">Semana 4</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana4" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 4">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana4" data-type="creches" aria-label="Cardápio Creches Semana 4">Creches</a>
+                <a href="#" class="button" data-week="semana4" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 4">Fundamental Grupo 1</a>
+                <a href="#" class="button" data-week="semana4" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 4">Fundamental Grupo 2</a>
+                <a href="#" class="button" data-week="semana4" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 4">Fundamental Grupo 3</a>
+                <a href="#" class="button" data-week="semana4" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 4">Fundamental Esther</a>
+                <a href="#" class="button" data-week="semana4" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 4">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana4" data-type="etec" aria-label="Cardápio ETEC Semana 4">ETEC</a>
             </div>
 
             <div class="button-column" id="semana5">
-                <h2 class="column-title">5ª SEM - 28 a 31 JULHO</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana5" data-type="creche-m-verde" aria-label="Ver cardápio da Creche M. Verde para a 5ª Semana de Julho">CRECHE M.VERDE</a>
-                <a href="#" class="button creches" data-week="semana5" data-type="creches" aria-label="Ver cardápio das Creches para a 5ª Semana de Julho">CRECHES</a>
-                <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-grupo1" title="Escolas Fundamentais: Braga, Caic, Célia, Alzira, Padre" aria-label="Ver cardápio Fundamental para Braga, Caic, Célia, Alzira, Padre na 5ª Semana de Julho">BRAGA, CAIC, CÉLIA, ALZIRA, PADRE</a>
-                <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-grupo2" title="Escolas Fundamentais: Anna, Anselmo, M. Ap., Faggioni, Braguetto" aria-label="Ver cardápio Fundamental para Anna, Anselmo, M. Ap., Faggioni, Braguetto na 5ª Semana de Julho">ANNA, ANSELMO, M.AP., FAGGIONI, BRAGUETTO</a>
-                <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-grupo3" title="Escolas Fundamentais: A. Augusto, Portinari, M. Virgínia" aria-label="Ver cardápio Fundamental para A. Augusto, Portinari, M. Virgínia na 5ª Semana de Julho">A.AUGUSTO, PORTINARI, M.VIRGÍNIA</a>
-                <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-esther" title="Escola Fundamental: Esther Vianna" aria-label="Ver cardápio Fundamental para Esther Vianna na 5ª Semana de Julho">ESTHER VIANNA</a>
-                <a href="#" class="button fundamental" data-week="semana5" data-type="fundamental-grupo4" title="Escolas Fundamentais: GTL, EESA, Castelo, Washington" aria-label="Ver cardápio Fundamental para GTL, EESA, CASTELO, WASHINGTON na 5ª Semana de Julho">GTL, EESA, CASTELO, WASHINGTON</a>
-                <a href="#" class="button etec" data-week="semana5" data-type="etec" title="Cardápio ETEC - Paula Souza" aria-label="Ver cardápio da ETEC - Paula Souza para a 5ª Semana de Julho">ETEC - PAULA SOUZA</a>
+                <h2 class="column-title">Semana 5</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana5" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 5">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana5" data-type="creches" aria-label="Cardápio Creches Semana 5">Creches</a>
+                <a href="#" class="button" data-week="semana5" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 5">Fundamental Grupo 1</a>
+                <a href="#" class="button" data-week="semana5" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 5">Fundamental Grupo 2</a>
+                <a href="#" class="button" data-week="semana5" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 5">Fundamental Grupo 3</a>
+                <a href="#" class="button" data-week="semana5" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 5">Fundamental Esther</a>
+                <a href="#" class="button" data-week="semana5" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 5">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana5" data-type="etec" aria-label="Cardápio ETEC Semana 5">ETEC</a>
             </div>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Objeto para centralizar todos os links dos cardápios.
-            // **ATENÇÃO:** ATUALIZE ESTES LINKS COM OS IDs DOS SEUS DOCUMENTOS REAIS!
-            // A estrutura agora é ano -> mês -> semana -> tipo.
-            const menuLinks = {
-                "2025": {
-                    "julho": { // Use o nome do mês em minúsculas
-                        "semana1": {
-                            "creche-m-verde": "https://docs.google.com/document/d/17bVULRuOV4NrNoVQ0u0saLrXF7bVAteJ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
-                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM1/edit",
-                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM1/edit",
-                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM1/edit",
-                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM1/edit",
-                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM1/edit",
-                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM1/edit",
-                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM1/edit"
-                        },
-                        "semana2": {
-                            "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM2/edit",
-                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM2/edit",
-                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM2/edit",
-                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM2/edit",
-                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM2/edit",
-                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM2/edit",
-                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM2/edit",
-                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM2/edit"
-                        },
-                        "semana3": {
-                            "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM3/edit",
-                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM3/edit",
-                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM3/edit",
-                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM3/edit",
-                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM3/edit",
-                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM3/edit",
-                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM3/edit",
-                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM3/edit"
-                        },
-                        "semana4": {
-                            "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM4/edit",
-                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM4/edit",
-                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM4/edit",
-                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM4/edit",
-                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM4/edit",
-                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM4/edit",
-                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM4/edit",
-                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM4/edit"
-                        },
-                        "semana5": {
-                            "creche-m-verde": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHE_M_VERDE_JULHO_SEM5/edit",
-                            "creches": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_CRECHES_JULHO_SEM5/edit",
-                            "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM5/edit",
-                            "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM5/edit",
-                            "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM5/edit",
-                            "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM5/edit",
-                            "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM5/edit",
-                            "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM5/edit"
-                        }
-                    }
-                    // Adicione outros meses aqui, como "agosto": {}, "setembro": {}, etc.
-                }
-                // Adicione outros anos aqui, como "2026": {}
-            };
-
-            const allButtons = document.querySelectorAll('.button');
-            const legendItems = document.querySelectorAll('.legend-item');
-            const showAllButton = document.querySelector('.show-all-button');
-            const filterMessage = document.getElementById('filter-message');
-
-            // --- Atribui os links dinamicamente e melhora feedback para links vazios ---
-            function applyLinksToButtons() {
-                // Definimos o ano e mês alvo para "Julho de 2025" diretamente,
-                // já que a página é especificamente para esse cardápio.
-                const targetYear = "2025";
-                const targetMonthName = "julho"; // Certifique-se que isso corresponde à chave em menuLinks
-
-                allButtons.forEach(button => {
-                    const week = button.dataset.week;
-                    const type = button.dataset.type;
-                    const originalLabel = button.getAttribute('aria-label');
-
-                    let foundLink = null;
-                    if (menuLinks[targetYear] && menuLinks[targetYear][targetMonthName] && menuLinks[targetYear][targetMonthName][week]) {
-                        if (menuLinks[targetYear][targetMonthName][week][type]) {
-                            foundLink = menuLinks[targetYear][targetMonthName][week][type];
-                        } else {
-                            if (type.startsWith('fundamental')) {
-                                for (const key in menuLinks[targetYear][targetMonthName][week]) {
-                                    if (key.startsWith(type)) {
-                                        foundLink = menuLinks[targetYear][targetMonthName][week][key];
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if (foundLink && foundLink.trim() !== '' && foundLink.startsWith('http')) { // Garante que é um link válido
-                        button.href = foundLink;
-                        button.style.pointerEvents = ''; // Habilita o clique
-                        button.style.opacity = '1';     // Remove a opacidade
-                        button.title = originalLabel; // Restaura o título original
-                        button.textContent = button.dataset.originalText || button.textContent; // Restaura texto original
-                        button.classList.remove('no-link'); // Remove classe se houver
-                    } else {
-                        // Guarda o texto original do botão antes de alterá-lo
-                        if (!button.dataset.originalText) {
-                            button.dataset.originalText = button.textContent;
-                        }
-                        button.href = "#"; // Evita navegação inválida
-                        button.style.pointerEvents = 'none'; // Desabilita o clique
-                        button.style.opacity = '0.5'; // Deixa o botão mais claro
-                        button.title = "Cardápio não disponível ou em breve."; // Informa ao usuário
-                        button.textContent = "Em breve!"; // Altera o texto visível no botão
-                        button.classList.add('no-link'); // Adiciona uma classe para estilização futura se quiser
-                    }
-                });
-            }
-
-            // --- Destaque e Reordenação da Semana Atual (com selo) ---
-            function highlightCurrentWeek() {
-                const today = new Date();
-                const dayOfMonth = today.getDate();
-                const month = today.getMonth() + 1;
-                const year = today.getFullYear();
-
-                document.querySelectorAll('.button-column').forEach(col => {
-                    col.classList.remove('current-week');
-                    const label = col.querySelector('.current-week-label');
-                    if (label) label.remove();
-                });
-
-                if (month === 7 && year === 2025) { 
-                    let currentWeekColumnId = '';
-
-                    if (dayOfMonth >= 1 && dayOfMonth <= 4) {
-                        currentWeekColumnId = 'semana1';
-                    } else if (dayOfMonth >= 7 && dayOfMonth <= 11) {
-                        currentWeekColumnId = 'semana2';
-                    } else if (dayOfMonth >= 14 && dayOfMonth <= 18) {
-                        currentWeekColumnId = 'semana3';
-                    } else if (dayOfMonth >= 21 && dayOfMonth <= 25) {
-                        currentWeekColumnId = 'semana4';
-                    } else if (dayOfMonth >= 28 && dayOfMonth <= 31) {
-                        currentWeekColumnId = 'semana5';
-                    }
-
-                    if (currentWeekColumnId) {
-                        const currentWeekColumn = document.getElementById(currentWeekColumnId);
-                        if (currentWeekColumn) {
-                            currentWeekColumn.classList.add('current-week');
-
-                            const label = document.createElement('span');
-                            label.classList.add('current-week-label');
-                            label.textContent = 'SEMANA ATUAL';
-                            currentWeekColumn.prepend(label);
-
-                            const columnsContainer = document.querySelector('.columns-container');
-                            if (columnsContainer) {
-                                columnsContainer.prepend(currentWeekColumn);
-                            }
-                        }
-                    }
-                }
-            }
-
-            // --- Funcionalidade de Filtragem ---
-            function filterButtons(filterType, filterName = '') {
-                allButtons.forEach(button => {
-                    const hasValidLink = !(button.style.pointerEvents === 'none'); 
-
-                    if (filterType === 'all') {
-                        button.classList.remove('inactive-filtered');
-                    } else if (button.dataset.type.startsWith(filterType)) {
-                        button.classList.remove('inactive-filtered');
-                    } else {
-                        button.classList.add('inactive-filtered');
-                    }
-                });
-
-                // Controla a opacidade da mensagem de filtro via JS para a transição
-                if (filterType === 'all') {
-                    filterMessage.style.opacity = '0'; // Esconde a mensagem
-                    filterMessage.textContent = ''; // Limpa o texto após a transição
-                } else {
-                    filterMessage.textContent = `Filtrando por: ${filterName}`;
-                    filterMessage.style.opacity = '1'; // Mostra a mensagem
-                }
-            }
-
-            legendItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    legendItems.forEach(li => li.classList.remove('active'));
-                    this.classList.add('active');
-
-                    const filterType = this.dataset.filter;
-                    const filterName = this.textContent;
-                    filterButtons(filterType, filterName);
-                });
-            });
-
-            showAllButton.addEventListener('click', function() {
-                legendItems.forEach(li => li.classList.remove('active'));
-                filterButtons('all');
-            });
-
-            applyLinksToButtons();
-            highlightCurrentWeek();
-            // Inicializa a mensagem de filtro escondida
-            filterMessage.style.opacity = '0';
-            filterButtons('all'); 
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
