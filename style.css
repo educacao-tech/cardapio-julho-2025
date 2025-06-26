@@ -23,6 +23,7 @@
     --no-link-bg-color: #cccccc; /* Fundo para botões "Em breve!" */
     --no-link-border-color: #999999;
     --no-link-text-color: #666;
+    --highlight-color: #27ae60; /* Cor para destaque principal, como o selo "Semana Atual" */
 
     --spacing-xs: 5px;
     --spacing-s: 10px;
@@ -149,6 +150,7 @@ h1 {
     border-bottom-left-radius: var(--spacing-s);
     box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra para o selo */
     z-index: 10; /* Garante que o selo fique acima de outros elementos */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Adicionada transição para o selo */
 }
 
 /* Animação de pulso para a sombra da semana atual */
