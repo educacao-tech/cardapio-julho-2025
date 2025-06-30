@@ -1,410 +1,300 @@
-/* Estilos CSS para a visualização normal da página do cardápio */
-
-/* Variáveis CSS para cores e espaçamento - Facilita a manutenção */
-:root {
-    --primary-color: #3498db; /* Azul padrão dos botões */
-    --primary-hover-color: #2980b9; /* Azul mais escuro no hover */
-    --creche-m-verde-color: #2ecc71; /* Verde creche M. Verde */
-    --creche-m-verde-hover-color: #27ae60;
-    --creches-color: #f39c12; /* Laranja creches */
-    --creches-hover-color: #e67e22;
-    --etec-color: #9b59b6; /* Roxo ETEC */
-    --etec-hover-color: #8e44ad;
-    --button-text-color: white;
-    --background-soft-gray: #f8f8f8; /* Fundo suave da página */
-    --background-light-gray: #f0f0f0; /* Fundo do container da legenda */
-    --background-column-gray: #f2f2f2; /* Fundo da coluna de botões */
-    --background-current-week: #e6ffe6; /* Fundo da semana atual */
-    --border-current-week: #27ae60; /* Borda da semana atual */
-    --text-color-dark: #2c3e50; /* Cor escura para títulos */
-    --text-color-medium: #34495e; /* Cor média para títulos de coluna */
-    --text-color-light: #555; /* Cor para mensagens */
-    --border-light-gray: #ccc;
-    --no-link-bg-color: #cccccc; /* Fundo para botões "Em breve!" */
-    --no-link-border-color: #999999;
-    --no-link-text-color: #666; /* Ajustado para melhor contraste */
-    --highlight-color: #27ae60; /* Cor para destaque principal, como o selo "Semana Atual" */
-
-    --spacing-xs: 5px;
-    --spacing-s: 10px;
-    --spacing-m: 15px;
-    --spacing-l: 20px;
-    --spacing-xl: 25px;
-    --spacing-xxl: 30px;
-    --spacing-xxxl: 35px;
-}
-
-/* Estilos globais para o corpo da página */
+/* Estilos Gerais do Corpo (Body) */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0; /* Remove margem padrão do body */
-    padding: 0;
-    background-color: var(--background-soft-gray); /* Cor de fundo suave */
-    color: var(--text-color); /* Cor padrão do texto */
-    line-height: 1.6; /* Aumenta o espaçamento entre linhas para melhor legibilidade */
-}
-
-/* Estilo da barra de rolagem para navegadores WebKit (Chrome, Safari) */
-body::-webkit-scrollbar {
-    width: var(--spacing-s); /* Largura da barra de rolagem */
-}
-body::-webkit-scrollbar-track {
-    background: var(--background-light-gray); /* Fundo da trilha da barra */
-    border-radius: var(--spacing-xs);
-}
-body::-webkit-scrollbar-thumb {
-    background: #888; /* Cor do "polegar" da barra de rolagem */
-    border-radius: var(--spacing-xs);
-}
-body::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Cor no hover */
-}
-
-
-/* Container principal que envolve todo o conteúdo */
-.main-container {
-    /* Por padrão, não definimos um max-width aqui para permitir que a seção no Google Sites controle a largura. */
-    /* Se quiser uma largura controlada, descomente e ajuste o valor: */
-    /* max-width: 1200px; */
-    margin: 0 auto; /* Centraliza o container na página */
-    padding: var(--spacing-xs) var(--spacing-l) var(--spacing-xl) var(--spacing-l); /* Espaçamento: topo, lados, baixo */
-    background-color: var(--button-text-color); /* Fundo branco para o bloco de conteúdo */
-    border-radius: var(--spacing-s); /* Cantos arredondados */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
-}
-
-/* Título principal da página */
-h1 {
-    text-align: center;
-    color: var(--text-color-dark); /* Cor escura para o título */
-    margin-top: var(--spacing-m); /* Mantém margin-top */
-    margin-bottom: var(--spacing-xxxl); /* Aumentado margin-bottom para mais espaço após o título */
-    font-size: 2.5em; /* Tamanho da fonte do título */
-    letter-spacing: 1px; /* Adiciona espaçamento entre letras */
-}
-
-/* Estilo para o link "Voltar para a Página Principal" */
-.back-link {
-    text-align: center;
-    margin-bottom: var(--spacing-xl); /* Aumentado margin-bottom para mais espaço abaixo do link */
-    font-size: 1.1em;
-}
-.back-link a {
-    text-decoration: none; /* Remove sublinhado */
-    color: var(--primary-color); /* Azul para o link */
-    font-weight: bold;
-    transition: color 0.3s ease; /* Transição suave para o hover */
-}
-.back-link a:hover {
-    color: var(--primary-hover-color);
-    text-decoration: underline; /* Adiciona sublinhado no hover */
-}
-/* Iconografia no Link "Voltar para a Página Principal" */
-.back-link a::before {
-    content: '← '; /* Adiciona uma seta antes do texto */
-    display: inline-block;
-    margin-right: 5px;
-    font-weight: bold; /* Garante que a seta seja bold também */
-}
-
-
-/* Container para as colunas de botões (usando CSS Grid para responsividade) */
-.columns-container {
-    display: grid;
-    /* Colunas responsivas: mínimo de 280px, estica para 1 fração disponível */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-xl); /* Aumentado espaçamento entre as colunas */
-    justify-content: center; /* Centraliza as colunas */
-}
-
-/* Estilo para cada coluna individual de botões (semana) */
-.button-column {
-    background-color: var(--background-column-gray); /* Fundo levemente cinza */
-    padding: var(--spacing-m);
-    border-radius: var(--spacing-s);
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Sombra sutil */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6; /* Um fundo cinza claro */
+    color: #333;
+    line-height: 1.6;
     display: flex;
-    flex-direction: column; /* Botões empilhados verticalmente */
-    gap: var(--spacing-s); /* Espaçamento entre os botões dentro da coluna */
-    transition: all 0.3s ease, transform 0.3s ease; /* Transição suave para o destaque da semana atual e hover */
-    position: relative; /* Necessário para posicionar o selo "SEMANA ATUAL" */
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh; /* Garante que o body ocupe a altura total da viewport */
+    box-sizing: border-box; /* Inclui padding e borda no tamanho total */
 }
 
-/* Efeito ao passar o mouse sobre as colunas */
-.button-column:hover:not(.current-week) { /* Não aplica hover na semana atual, pois ela já tem animação */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra mais pronunciada no hover */
-    transform: translateY(-2px); /* Leve levantamento */
-}
-
-/* Estilo para o selo "SEMANA ATUAL" */
-.current-week-label {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    background-color: var(--highlight-color); /* Verde */
-    color: var(--button-text-color);
-    padding: var(--spacing-xs) var(--spacing-s);
-    font-size: 0.8em;
-    font-weight: bold;
-    border-top-right-radius: var(--spacing-s);
-    border-bottom-left-radius: var(--spacing-s);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra para o selo */
-    z-index: 10; /* Garante que o selo fique acima de outros elementos */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Adicionada transição para o selo */
-}
-
-/* Animação de pulso para a sombra da semana atual */
-@keyframes pulse-shadow {
-    0% { box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-    50% { box-shadow: 0 6px 12px rgba(0,0,0,0.25); }
-    100% { box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-}
-
-/* Estilo para a coluna da semana atual (adicionado via JavaScript) */
-.button-column.current-week {
-    border: 2px solid var(--border-current-week); /* Borda verde forte (removido !important) */
-    background-color: var(--background-current-week); /* Fundo verde-claro (removido !important) */
-    animation: pulse-shadow 2s infinite ease-in-out; /* Aplica a animação de pulso */
-}
-
-/* Estilo para os títulos de cada semana */
-.column-title {
-    text-align: center;
-    color: var(--text-color-medium);
-    margin-bottom: var(--spacing-m);
-    font-size: 1.5em;
-    font-weight: bold;
-    border-bottom: 2px solid var(--border-light-gray); /* Linha divisória */
-    padding-bottom: var(--spacing-s);
-    letter-spacing: 0.5px; /* Adiciona leve espaçamento entre letras */
-}
-
-/* Estilo padrão para os botões de cardápio */
-.button {
-    display: block; /* Ocupa a largura total disponível */
+/* Container principal para o conteúdo */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    max-width: 1200px; /* Largura máxima para o conteúdo principal */
     width: 100%;
-    padding: 12px 15px;
-    background-color: var(--primary-color); /* Azul padrão */
-    color: var(--button-text-color);
     text-align: center;
+    margin-bottom: 20px; /* Espaço abaixo do container */
+}
+
+/* Título */
+h1 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 2.5em;
+    font-weight: 700;
+}
+
+/* Seção de Semanas (grid) */
+.weeks-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px; /* Espaçamento entre as colunas */
+    flex-wrap: wrap; /* Permite que as colunas quebrem linha em telas menores */
+    margin-top: 30px;
+}
+
+/* Coluna de Botões */
+.button-column {
+    background-color: #fdfdfd;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1; /* Permite que a coluna cresça */
+    min-width: 200px; /* Largura mínima para evitar que fiquem muito estreitas */
+    max-width: 22%; /* Para ter 4 colunas em telas maiores */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Para o selo de SEMANA ATUAL */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.button-column:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.button-column h2 {
+    color: #4a69bd;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+/* Botões de Cardápio */
+.button {
+    display: block;
+    width: 100%;
+    padding: 12px 18px;
+    margin-bottom: 12px;
+    background-color: #6a89cc; /* Azul vibrante */
+    color: white;
     text-decoration: none;
-    border-radius: var(--spacing-xs);
+    border-radius: 8px;
     font-size: 1.1em;
-    font-weight: bold;
-    /* Transições para efeitos suaves ao interagir (incluindo opacity para o filtro) */
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease, opacity 0.4s ease;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
     border: none;
     cursor: pointer;
-    box-shadow: 0 2px 3px rgba(0,0,0,0.1); /* Sombra suave para os botões */
 }
 
-/* Efeito ao passar o mouse sobre os botões */
-.button:hover {
-    background-color: var(--primary-hover-color); /* Azul mais escuro no hover */
-    transform: translateY(-2px); /* Pequeno levantamento */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* Sombra mais proeminente */
+.button:last-child {
+    margin-bottom: 0; /* Remove margem do último botão */
 }
 
-/* ESTILOS DE FOCO APRIMORADOS */
-.button:focus,
-.legend-item:focus,
-.show-all-button:focus,
-.back-link a:focus {
-    outline: 2px solid var(--primary-hover-color); /* Contorno para acessibilidade de teclado */
-    outline-offset: 3px; /* Espaço entre o elemento e o contorno */
-    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.4); /* Sombra suave para o foco */
-}
-/* Garante que o foco na legenda ativa combine */
-.legend-item.active:focus {
-    outline: 2px solid var(--highlight-color);
-    outline-offset: 3px;
-    box-shadow: 0 0 0 3px var(--highlight-color), 0 2px 5px rgba(0,0,0,0.2);
+.button:hover:not(.no-link) {
+    background-color: #4a69bd; /* Azul mais escuro no hover */
+    transform: translateY(-2px); /* Pequena elevação ao passar o mouse */
 }
 
-
-/* Estilo para botões inativos no filtro (adicionado via JavaScript) */
-.button.inactive-filtered {
-    opacity: 0.3; /* Opacidade baixa */
-    pointer-events: none; /* Impede cliques */
-    transform: translateY(0); /* Remove elevação no hover */
-    box-shadow: none; /* Remove sombra */
-}
-
-/* Estilo para botões sem link (texto "Em breve!", adicionado via JavaScript) */
+/* Estilo para botões quando o link NÃO está disponível ("Em breve!") */
 .button.no-link {
-    background-color: var(--no-link-bg-color); /* Cor de fundo diferente (cinza) */
-    border: 1px dashed var(--no-link-border-color); /* Borda tracejada */
-    color: var(--no-link-text-color); /* Texto mais escuro */
-    cursor: not-allowed; /* Altera o cursor para "não permitido" */
-    opacity: 0.7; /* Mantém um pouco de opacidade, mas menos que os filtrados */
-    box-shadow: none; /* Remove a sombra */
-    transform: none; /* Remove qualquer transformação de hover */
-}
-.button.no-link:hover { /* Garante que não haja efeito de hover para botões sem link */
-    background-color: var(--no-link-bg-color);
-    transform: none;
+    background-color: #cccccc; /* Cinza claro */
+    cursor: not-allowed;
+    opacity: 0.7; /* Mantém a opacidade um pouco menor para indicar inatividade */
+    pointer-events: none; /* Garante que não seja clicável */
     box-shadow: none;
 }
 
-
-/* Cores personalizadas para os botões por tipo de instituição */
-.button.creche-m-verde {
-    background-color: var(--creche-m-verde-color); /* Verde */
-}
-.button.creche-m-verde:hover {
-    background-color: var(--creche-m-verde-hover-color);
+/* Estilo para colunas da semana atual */
+.button-column.current-week {
+    border-color: #28a745; /* Borda verde para destaque */
+    box-shadow: 0 0 15px rgba(40, 167, 69, 0.4); /* Sombra verde */
+    transform: translateY(-8px); /* Mais destaque */
 }
 
-.button.creches {
-    background-color: var(--creches-color); /* Laranja */
-}
-.button.creches:hover {
-    background-color: var(--creches-hover-color);
-}
-
-/* O padrão é o azul var(--primary-color) para 'fundamental' */
-
-.button.etec {
-    background-color: var(--etec-color); /* Roxo */
-}
-.button.etec:hover {
-    background-color: var(--etec-hover-color);
-}
-
-/* Estilos para o container da legenda (filtros) */
-.legend-container {
-    text-align: center;
-    margin-bottom: var(--spacing-xxl); /* Aumentado margin-bottom para mais espaço após a legenda */
-    padding: var(--spacing-m);
-    background-color: var(--background-light-gray);
-    border-radius: var(--spacing-xs);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-
-.legend-container p {
+/* Selo "SEMANA ATUAL" */
+.current-week-label {
+    position: absolute;
+    top: -15px; /* Ajuste a posição vertical */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #28a745; /* Verde vibrante */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
     font-weight: bold;
-    margin-bottom: var(--spacing-s);
-    color: var(--text-color-medium);
-    font-size: 1.1em;
+    white-space: nowrap; /* Impede que o texto quebre linha */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Garante que fique acima de outros elementos */
 }
 
-/* Estilo para cada item clicável da legenda */
+/* --- Estilos para a Legenda e Filtros (Seus Botões de Filtro) --- */
+
+.legend-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem linha */
+    justify-content: center;
+    gap: 15px; /* Espaçamento entre os itens da legenda */
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #f0f3f6;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
 .legend-item {
-    display: inline-block;
-    padding: var(--spacing-xs) var(--spacing-s);
-    border-radius: 3px;
-    color: var(--button-text-color);
-    font-size: 0.9em;
-    margin: 0 var(--spacing-xs) var(--spacing-xs);
+    padding: 10px 18px;
+    border: 1px solid #a3b1d8;
+    border-radius: 25px; /* Botões mais arredondados */
+    background-color: #e0e6f0; /* Fundo padrão mais claro */
+    color: #4a69bd; /* Cor do texto padrão */
+    font-size: 0.95em;
+    font-weight: 600;
     cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Adicionada transição para box-shadow */
-    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+    opacity: 1; /* **AQUI ESTÁ A CHAVE: OPAQUIDADE PADRÃO TOTALMENTE VISÍVEL** */
+    display: inline-flex; /* Para melhor alinhamento do texto */
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
 }
 
 .legend-item:hover {
-    opacity: 0.8;
-    transform: translateY(-1px);
+    background-color: #cdd8e6; /* Um pouco mais escuro no hover */
+    border-color: #6a89cc;
+    opacity: 0.9; /* Levemente menos opaco no hover, mas ainda visível */
 }
 
-/* Estilo para o item da legenda ativo (selecionado) */
 .legend-item.active {
-    box-shadow: 0 0 0 3px var(--highlight-color), 0 2px 5px rgba(0,0,0,0.2); /* Adiciona uma segunda sombra */
-    opacity: 1;
-    transform: translateY(-2px); /* Elevação sutil */
+    background-color: #4a69bd; /* Fundo azul escuro quando ativo */
+    color: white; /* Texto branco quando ativo */
+    border-color: #4a69bd;
+    opacity: 1; /* Totalmente visível quando ativo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Botão para mostrar todos os cardápios (remover filtros) */
+/* Botão "Mostrar Todos" */
 .show-all-button {
-    background-color: #607d8b; /* Cinza escuro */
-    color: var(--button-text-color);
-    padding: 8px var(--spacing-m);
-    border-radius: var(--spacing-xs);
+    margin-top: 20px;
+    padding: 10px 25px;
+    background-color: #6c757d; /* Cinza escuro */
+    color: white;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
-    margin-top: var(--spacing-m);
-    transition: background-color 0.3s ease;
+    font-size: 1em;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    opacity: 1; /* **AQUI ESTÁ A CHAVE: OPAQUIDADE PADRÃO TOTALMENTE VISÍVEL** */
 }
+
 .show-all-button:hover {
-    background-color: #455a64; /* Cinza mais escuro no hover */
+    background-color: #5a6268; /* Cinza mais escuro no hover */
+    transform: translateY(-2px);
+    opacity: 0.9;
 }
 
-/* Estilo para a mensagem de filtro ativo */
+/* Mensagem de Filtro Ativo */
 #filter-message {
-    margin-top: var(--spacing-s);
-    font-size: 0.95em;
-    color: var(--text-color-light);
-    font-style: italic;
-    opacity: 0; /* Começa invisível, JS controla */
-    transition: opacity 0.3s ease-out; /* Adiciona transição de opacidade */
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #fff3cd; /* Fundo amarelo claro */
+    color: #856404; /* Texto amarelo escuro */
+    border: 1px solid #ffeeba;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 500;
+    text-align: center;
+    opacity: 0; /* Começa invisível, JS controlará a visibilidade */
+    transition: opacity 0.3s ease-in-out;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* --- Media Queries para responsividade --- */
-/* Telas médias (ex: tablets em modo paisagem, laptops menores) */
-@media (max-width: 992px) {
-    .columns-container {
-        /* Muda para 2 colunas em telas médias */
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+/* Rodapé */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    color: #777;
+    font-size: 0.9em;
+    text-align: center;
+    width: 100%;
+}
+
+footer a {
+    color: #6a89cc;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* --- Media Queries para Responsividade --- */
+
+@media (max-width: 1024px) {
+    .button-column {
+        max-width: 45%; /* Duas colunas por linha em tablets */
     }
 }
 
-/* Telas pequenas (ex: celulares) */
-@media (max-width: 600px) {
-    .main-container {
-        padding: var(--spacing-s) var(--spacing-m) var(--spacing-m); /* Ajustado padding para telas menores: topo 10px, lados 15px, baixo 15px */
-    }
+@media (max-width: 768px) {
     h1 {
-        font-size: 1.8em; /* Título principal menor */
-        margin-bottom: var(--spacing-l);
-    }
-    .back-link {
-        font-size: 0.9em; /* Link de voltar menor */
-        margin-bottom: var(--spacing-m);
-    }
-    .columns-container {
-        grid-template-columns: 1fr; /* 1 coluna em telas muito pequenas */
-        gap: var(--spacing-m); /* Reduz o espaçamento entre as colunas */
+        font-size: 2em;
     }
     .button-column {
-        padding: var(--spacing-s); /* Reduz o padding da coluna de botões */
-        gap: var(--spacing-s); /* Reduz o espaçamento entre os botões dentro de cada coluna */
-    }
-    /* Refinamento da Borda da Semana Atual no Mobile */
-    .button-column.current-week {
-        border-width: 1.5px; /* Borda mais fina no mobile (removido !important) */
-    }
-    .column-title {
-        font-size: 1.2em; /* Ajusta tamanho do título da coluna em telas pequenas */
-        margin-bottom: var(--spacing-s);
-        padding-bottom: var(--spacing-s);
+        max-width: 48%; /* Ajuste para tablets menores */
+        padding: 15px;
     }
     .button {
-        font-size: 1em; /* Botão ligeiramente menor */
-        padding: var(--spacing-s) 12px;
+        font-size: 1em;
+        padding: 10px 15px;
     }
-    .legend-item {
-        display: block; /* Itens da legenda em bloco em telas pequenas */
-        margin: var(--spacing-xs) auto; /* Centraliza e adiciona margem vertical */
-        font-size: 0.85em; /* Legenda ligeiramente menor */
-        padding: 4px 8px;
+    .legend-item, .show-all-button {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+    }
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 1.8em;
+    }
+    .weeks-grid {
+        flex-direction: column; /* Colunas empilhadas em celulares */
+        gap: 15px;
+    }
+    .button-column {
+        max-width: 95%; /* Quase a largura total em celulares */
+        width: 100%;
+        margin: 0 auto; /* Centraliza a coluna */
+    }
+    .button {
+        font-size: 0.95em;
+        padding: 10px 12px;
     }
     .legend-container {
-        padding: var(--spacing-s);
-        margin-bottom: var(--spacing-l);
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
     }
-    .legend-container p {
-        font-size: 1em;
-        margin-bottom: var(--spacing-s);
-    }
-    .show-all-button {
-        padding: 7px 12px;
-        font-size: 0.9em;
-    }
-    #filter-message {
-        font-size: 0.85em;
-    }
-    .current-week-label {
-        padding: 3px 8px;
-        font-size: 0.7em;
+    .legend-item, .show-all-button {
+        width: 100%; /* Botões de filtro ocupam toda a largura */
+        box-sizing: border-box;
     }
 }
