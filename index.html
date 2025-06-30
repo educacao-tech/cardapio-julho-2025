@@ -3,91 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cardápios das Escolas</title>
+    <title>Cardápio da Semana</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    </head>
 <body>
-    <div class="main-container">
-        <h1>Cardápios das Escolas</h1>
-
-        <div class="back-link">
-            <a href="URL_DA_SUA_PAGINA_PRINCIPAL" aria-label="Voltar para a Página Principal">Voltar para a Página Principal</a>
-        </div>
+    <div class="container">
+        <h1>Cardápio da Semana</h1>
 
         <div class="legend-container">
-            <p>Filtrar por instituição:</p>
-            <div class="legend-items">
-                <span class="legend-item creche-m-verde" data-filter="creche-m-verde" role="button" tabindex="0" aria-label="Filtrar por Creche Mundo Verde">Creche M. Verde</span>
-                <span class="legend-item creches" data-filter="creches" role="button" tabindex="0" aria-label="Filtrar por Creches">Creches</span>
-                <span class="legend-item" data-filter="fundamental" role="button" tabindex="0" aria-label="Filtrar por Fundamental">Fundamental</span>
-                <span class="legend-item etec" data-filter="etec" role="button" tabindex="0" aria-label="Filtrar por ETEC">ETEC</span>
-            </div>
-            <button class="show-all-button" aria-label="Mostrar todos os cardápios">Mostrar Todos</button>
-            <p id="filter-message" aria-live="polite"></p>
+            <div class="legend-item" data-filter="creche-m-verde" tabindex="0" role="button" aria-label="Filtrar por Creche Mundo Verde">Creche M. Verde</div>
+            <div class="legend-item" data-filter="creches" tabindex="0" role="button" aria-label="Filtrar por Creches">Creches</div>
+            <div class="legend-item" data-filter="fundamental" tabindex="0" role="button" aria-label="Filtrar por Fundamental">Fundamental</div>
+            <div class="legend-item" data-filter="etec" tabindex="0" role="button" aria-label="Filtrar por ETEC">ETEC</div>
         </div>
+        <button class="show-all-button" tabindex="0" role="button" aria-label="Mostrar todos os cardápios">Mostrar Todos</button>
+        <div id="filter-message"></div>
 
-        <div class="columns-container">
-            <div class="button-column" id="semana1">
-                <h2 class="column-title">Semana 1</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana1" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 1">Creche M. Verde</a>
-                <a href="#" class="button creches" data-week="semana1" data-type="creches" aria-label="Cardápio Creches Semana 1">Creches</a>
-                <a href="#" class="button" data-week="semana1" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 1">Fundamental Grupo 1</a>
-                <a href="#" class="button" data-week="semana1" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 1">Fundamental Grupo 2</a>
-                <a href="#" class="button" data-week="semana1" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 1">Fundamental Grupo 3</a>
-                <a href="#" class="button" data-week="semana1" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 1">Fundamental Esther</a>
-                <a href="#" class="button" data-week="semana1" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 1">Fundamental Grupo 4</a>
-                <a href="#" class="button etec" data-week="semana1" data-type="etec" aria-label="Cardápio ETEC Semana 1">ETEC</a>
+        <div class="weeks-grid">
+            <div id="semana1" class="button-column">
+                <h2>Semana 1</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana1" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 1" target="_blank" rel="noopener noreferrer">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana1" data-type="creches" aria-label="Cardápio Creches Semana 1" target="_blank" rel="noopener noreferrer">Creches</a>
+                <a href="#" class="button fundamental-grupo1" data-week="semana1" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 1" target="_blank" rel="noopener noreferrer">Fundamental Grupo 1</a>
+                <a href="#" class="button fundamental-grupo2" data-week="semana1" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 1" target="_blank" rel="noopener noreferrer">Fundamental Grupo 2</a>
+                <a href="#" class="button fundamental-grupo3" data-week="semana1" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 1" target="_blank" rel="noopener noreferrer">Fundamental Grupo 3</a>
+                <a href="#" class="button fundamental-esther" data-week="semana1" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 1" target="_blank" rel="noopener noreferrer">Fundamental Esther</a>
+                <a href="#" class="button fundamental-grupo4" data-week="semana1" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 1" target="_blank" rel="noopener noreferrer">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana1" data-type="etec" aria-label="Cardápio ETEC Semana 1" target="_blank" rel="noopener noreferrer">ETEC</a>
             </div>
 
-            <div class="button-column" id="semana2">
-                <h2 class="column-title">Semana 2</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana2" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 2">Creche M. Verde</a>
-                <a href="#" class="button creches" data-week="semana2" data-type="creches" aria-label="Cardápio Creches Semana 2">Creches</a>
-                <a href="#" class="button" data-week="semana2" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 2">Fundamental Grupo 1</a>
-                <a href="#" class="button" data-week="semana2" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 2">Fundamental Grupo 2</a>
-                <a href="#" class="button" data-week="semana2" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 2">Fundamental Grupo 3</a>
-                <a href="#" class="button" data-week="semana2" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 2">Fundamental Esther</a>
-                <a href="#" class="button" data-week="semana2" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 2">Fundamental Grupo 4</a>
-                <a href="#" class="button etec" data-week="semana2" data-type="etec" aria-label="Cardápio ETEC Semana 2">ETEC</a>
+            <div id="semana2" class="button-column">
+                <h2>Semana 2</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana2" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 2" target="_blank" rel="noopener noreferrer">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana2" data-type="creches" aria-label="Cardápio Creches Semana 2" target="_blank" rel="noopener noreferrer">Creches</a>
+                <a href="#" class="button fundamental-grupo1" data-week="semana2" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 2" target="_blank" rel="noopener noreferrer">Fundamental Grupo 1</a>
+                <a href="#" class="button fundamental-grupo2" data-week="semana2" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 2" target="_blank" rel="noopener noreferrer">Fundamental Grupo 2</a>
+                <a href="#" class="button fundamental-grupo3" data-week="semana2" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 2" target="_blank" rel="noopener noreferrer">Fundamental Grupo 3</a>
+                <a href="#" class="button fundamental-esther" data-week="semana2" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 2" target="_blank" rel="noopener noreferrer">Fundamental Esther</a>
+                <a href="#" class="button fundamental-grupo4" data-week="semana2" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 2" target="_blank" rel="noopener noreferrer">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana2" data-type="etec" aria-label="Cardápio ETEC Semana 2" target="_blank" rel="noopener noreferrer">ETEC</a>
             </div>
 
-            <div class="button-column" id="semana3">
-                <h2 class="column-title">Semana 3</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana3" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 3">Creche M. Verde</a>
-                <a href="#" class="button creches" data-week="semana3" data-type="creches" aria-label="Cardápio Creches Semana 3">Creches</a>
-                <a href="#" class="button" data-week="semana3" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 3">Fundamental Grupo 1</a>
-                <a href="#" class="button" data-week="semana3" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 3">Fundamental Grupo 2</a>
-                <a href="#" class="button" data-week="semana3" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 3">Fundamental Grupo 3</a>
-                <a href="#" class="button" data-week="semana3" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 3">Fundamental Esther</a>
-                <a href="#" class="button" data-week="semana3" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 3">Fundamental Grupo 4</a>
-                <a href="#" class="button etec" data-week="semana3" data-type="etec" aria-label="Cardápio ETEC Semana 3">ETEC</a>
+            <div id="semana3" class="button-column">
+                <h2>Semana 3</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana3" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 3" target="_blank" rel="noopener noreferrer">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana3" data-type="creches" aria-label="Cardápio Creches Semana 3" target="_blank" rel="noopener noreferrer">Creches</a>
+                <a href="#" class="button fundamental-grupo1" data-week="semana3" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 3" target="_blank" rel="noopener noreferrer">Fundamental Grupo 1</a>
+                <a href="#" class="button fundamental-grupo2" data-week="semana3" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 3" target="_blank" rel="noopener noreferrer">Fundamental Grupo 2</a>
+                <a href="#" class="button fundamental-grupo3" data-week="semana3" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 3" target="_blank" rel="noopener noreferrer">Fundamental Grupo 3</a>
+                <a href="#" class="button fundamental-esther" data-week="semana3" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 3" target="_blank" rel="noopener noreferrer">Fundamental Esther</a>
+                <a href="#" class="button fundamental-grupo4" data-week="semana3" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 3" target="_blank" rel="noopener noreferrer">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana3" data-type="etec" aria-label="Cardápio ETEC Semana 3" target="_blank" rel="noopener noreferrer">ETEC</a>
             </div>
 
-            <div class="button-column" id="semana4">
-                <h2 class="column-title">Semana 4</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana4" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 4">Creche M. Verde</a>
-                <a href="#" class="button creches" data-week="semana4" data-type="creches" aria-label="Cardápio Creches Semana 4">Creches</a>
-                <a href="#" class="button" data-week="semana4" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 4">Fundamental Grupo 1</a>
-                <a href="#" class="button" data-week="semana4" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 4">Fundamental Grupo 2</a>
-                <a href="#" class="button" data-week="semana4" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 4">Fundamental Grupo 3</a>
-                <a href="#" class="button" data-week="semana4" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 4">Fundamental Esther</a>
-                <a href="#" class="button" data-week="semana4" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 4">Fundamental Grupo 4</a>
-                <a href="#" class="button etec" data-week="semana4" data-type="etec" aria-label="Cardápio ETEC Semana 4">ETEC</a>
+            <div id="semana4" class="button-column">
+                <h2>Semana 4</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana4" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 4" target="_blank" rel="noopener noreferrer">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana4" data-type="creches" aria-label="Cardápio Creches Semana 4" target="_blank" rel="noopener noreferrer">Creches</a>
+                <a href="#" class="button fundamental-grupo1" data-week="semana4" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 4" target="_blank" rel="noopener noreferrer">Fundamental Grupo 1</a>
+                <a href="#" class="button fundamental-grupo2" data-week="semana4" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 4" target="_blank" rel="noopener noreferrer">Fundamental Grupo 2</a>
+                <a href="#" class="button fundamental-grupo3" data-week="semana4" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 4" target="_blank" rel="noopener noreferrer">Fundamental Grupo 3</a>
+                <a href="#" class="button fundamental-esther" data-week="semana4" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 4" target="_blank" rel="noopener noreferrer">Fundamental Esther</a>
+                <a href="#" class="button fundamental-grupo4" data-week="semana4" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 4" target="_blank" rel="noopener noreferrer">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana4" data-type="etec" aria-label="Cardápio ETEC Semana 4" target="_blank" rel="noopener noreferrer">ETEC</a>
             </div>
 
-            <div class="button-column" id="semana5">
-                <h2 class="column-title">Semana 5</h2>
-                <a href="#" class="button creche-m-verde" data-week="semana5" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 5">Creche M. Verde</a>
-                <a href="#" class="button creches" data-week="semana5" data-type="creches" aria-label="Cardápio Creches Semana 5">Creches</a>
-                <a href="#" class="button" data-week="semana5" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 5">Fundamental Grupo 1</a>
-                <a href="#" class="button" data-week="semana5" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 5">Fundamental Grupo 2</a>
-                <a href="#" class="button" data-week="semana5" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 5">Fundamental Grupo 3</a>
-                <a href="#" class="button" data-week="semana5" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 5">Fundamental Esther</a>
-                <a href="#" class="button" data-week="semana5" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 5">Fundamental Grupo 4</a>
-                <a href="#" class="button etec" data-week="semana5" data-type="etec" aria-label="Cardápio ETEC Semana 5">ETEC</a>
+            <div id="semana5" class="button-column">
+                <h2>Semana 5</h2>
+                <a href="#" class="button creche-m-verde" data-week="semana5" data-type="creche-m-verde" aria-label="Cardápio Creche Mundo Verde Semana 5" target="_blank" rel="noopener noreferrer">Creche M. Verde</a>
+                <a href="#" class="button creches" data-week="semana5" data-type="creches" aria-label="Cardápio Creches Semana 5" target="_blank" rel="noopener noreferrer">Creches</a>
+                <a href="#" class="button fundamental-grupo1" data-week="semana5" data-type="fundamental-grupo1" aria-label="Cardápio Fundamental Grupo 1 Semana 5" target="_blank" rel="noopener noreferrer">Fundamental Grupo 1</a>
+                <a href="#" class="button fundamental-grupo2" data-week="semana5" data-type="fundamental-grupo2" aria-label="Cardápio Fundamental Grupo 2 Semana 5" target="_blank" rel="noopener noreferrer">Fundamental Grupo 2</a>
+                <a href="#" class="button fundamental-grupo3" data-week="semana5" data-type="fundamental-grupo3" aria-label="Cardápio Fundamental Grupo 3 Semana 5" target="_blank" rel="noopener noreferrer">Fundamental Grupo 3</a>
+                <a href="#" class="button fundamental-esther" data-week="semana5" data-type="fundamental-esther" aria-label="Cardápio Fundamental Esther Semana 5" target="_blank" rel="noopener noreferrer">Fundamental Esther</a>
+                <a href="#" class="button fundamental-grupo4" data-week="semana5" data-type="fundamental-grupo4" aria-label="Cardápio Fundamental Grupo 4 Semana 5" target="_blank" rel="noopener noreferrer">Fundamental Grupo 4</a>
+                <a href="#" class="button etec" data-week="semana5" data-type="etec" aria-label="Cardápio ETEC Semana 5" target="_blank" rel="noopener noreferrer">ETEC</a>
             </div>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2025 Cardápio Escolar. Todos os direitos reservados.</p>
+        <p>Desenvolvido com <a href="https://github.com/seu-perfil" target="_blank" rel="noopener noreferrer">Nome do Desenvolvedor</a></p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
