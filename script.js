@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Objeto menuLinks com os links dos cardápios por ano, mês e semana.
+    // Lembre-se de preencher os links para as semanas futuras e para os próximos meses.
     const menuLinks = {
         "2025": { // <-- Ano
             "julho": { // <-- Mês (seus links da semana1 já estão aqui!)
@@ -64,18 +66,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     "fundamental-grupo4": "https://docs.google.com/document/d/SEMANA1_AGOSTO_FUNDAMENTAL_GRUPO4/edit",
                     "etec": "https://docs.google.com/document/d/SEMANA1_AGOSTO_ETEC/edit"
                 },
+                // Adicione mais semanas para agosto e outros meses conforme necessário
             }
+            // Adicione mais meses e anos conforme a necessidade
         }
     };
 
-    // Mapeamento das datas de início de cada "semana" para o ID da coluna correspondente.
+    // Mapeamento das datas de início de cada "semana" para o ID da coluna correspondente e o mês de busca de links.
     // É CRÍTICO MANTER ESTE OBJETO ATUALIZADO COM OS PRÓXIMOS MESES E ANOS.
     // As datas são o primeiro dia da semana de referência para a coluna.
     const weekStartDatesMapping = {
-        // MUITO IMPORTANTE: Mapeie 30 de Junho para a semana1 de julho!
-        "2025-06-30": { id: "semana1", month: "julho" }, // A semana que começa em 30 de junho APONTA PARA OS LINKS DE JULHO/SEMANA1
+        // Para a semana que começa em 30 de Junho de 2025, os links serão buscados em "julho" e "semana1".
+        "2025-06-30": { id: "semana1", month: "julho" },
 
-        // As semanas de Julho continuam a partir de 07/07
+        // Datas para Julho de 2025 (a partir da segunda semana real de julho)
         "2025-07-07": { id: "semana2", month: "julho" },
         "2025-07-14": { id: "semana3", month: "julho" },
         "2025-07-21": { id: "semana4", month: "julho" },
@@ -89,188 +93,132 @@ document.addEventListener('DOMContentLoaded', function() {
         // Adicione mais entradas aqui para os próximos meses/anos!
     };
 
-    // ... (o restante do seu código JavaScript permanece EXATAMENTE o mesmo) ...
-
     const allButtons = document.querySelectorAll('.button');
-    const legendItems = document.querySelectorAll('.legend-item');
-    const showAllButton = document.querySelector('.show-all-button');
-    const filterMessage = document.getElementById('filter-message');
 
+    /**
+     * Aplica os links corretos aos botões com base na data atual e na semana correspondente.
+     */
     function applyLinksToButtons() {
         const today = new Date();
         const targetYear = today.getFullYear().toString();
-        // Usa Intl.DateTimeFormat para obter o nome do mês em minúsculas (ex: "julho")
-        // IMPORTANTE: Esta linha agora pode ser "enganada" pelo weekStartDatesMapping
-        const targetMonthName = new Intl.DateTimeFormat('pt-BR', { month: 'long' }).format(today).toLowerCase();
+        // Obtém o nome do mês atual para buscar links de semanas não-atuais
+        const currentMonthName = new Intl.DateTimeFormat('pt-BR', { month: 'long' }).format(today).toLowerCase();
+
+        // Obtém a semana e o mês efetivos para a busca de links da semana atual
+        const { currentWeekColumnId, effectiveMonthForLinks } = getCurrentWeekAndMonthForLinks();
 
         allButtons.forEach(button => {
-            const week = button.dataset.week;
-            const type = button.dataset.type;
+            const week = button.dataset.week; // Ex: "semana1"
+            const type = button.dataset.type; // Ex: "creches"
 
+            // Armazena o texto original do botão se ainda não o fez
             if (!button.dataset.originalText) {
                 button.dataset.originalText = button.textContent;
             }
 
             let foundLink = null;
-            // AQUI ESTÁ A MUDANÇA: Usamos a lógica de highlightCurrentWeek para determinar o mês e semana efetivos
-            // que devem ser usados para buscar o link.
-            const { currentWeekColumnId, effectiveMonthForLinks } = getCurrentWeekAndMonthForLinks();
+            let monthToSearch = currentMonthName; // Mês padrão para buscar links
 
-            // Se o botão for da semana atual (30/06 a 04/07), ele deve buscar os links de "julho" e "semana1"
+            // Se o botão pertence à coluna da semana atual, usa o mês mapeado
             if (week === currentWeekColumnId && effectiveMonthForLinks) {
-                if (menuLinks[targetYear] && menuLinks[targetYear][effectiveMonthForLinks] && menuLinks[targetYear][effectiveMonthForLinks][week]) {
-                    const weekLinks = menuLinks[targetYear][effectiveMonthForLinks][week];
+                monthToSearch = effectiveMonthForLinks;
+            }
 
+            // Tenta encontrar o link no menuLinks
+            if (menuLinks[targetYear] && menuLinks[targetYear][monthToSearch] && menuLinks[targetYear][monthToSearch][week]) {
+                const weekLinks = menuLinks[targetYear][monthToSearch][week];
+
+                // Busca o link exato pelo tipo
+                if (weekLinks[type]) {
+                    foundLink = weekLinks[type];
+                } else if (type.startsWith('fundamental')) { // Lógica para tipos "fundamental" (ex: fundamental-grupo1)
+                    // Verifica se existe um link específico para o subtipo (ex: fundamental-grupo1)
                     if (weekLinks[type]) {
                         foundLink = weekLinks[type];
-                    } else if (type.startsWith('fundamental')) {
-                        for (const key in weekLinks) {
-                            if (key.startsWith(type) && weekLinks[key]) {
-                                foundLink = weekLinks[key];
-                                break;
-                            }
-                        }
-                    }
-                }
-            } else { // Para as outras semanas, continua buscando pelo mês da data atual
-                if (menuLinks[targetYear] && menuLinks[targetYear][targetMonthName] && menuLinks[targetYear][targetMonthName][week]) {
-                    const weekLinks = menuLinks[targetYear][targetMonthName][week];
-
-                    if (weekLinks[type]) {
-                        foundLink = weekLinks[type];
-                    } else if (type.startsWith('fundamental')) {
-                        for (const key in weekLinks) {
-                            if (key.startsWith(type) && weekLinks[key]) {
-                                foundLink = weekLinks[key];
-                                break;
-                            }
-                        }
                     }
                 }
             }
 
+            // Verifica se o link encontrado é válido (não vazio, começa com http, não é placeholder)
             const isValidLink = foundLink && foundLink.trim() !== '' && foundLink.startsWith('http') && !foundLink.includes('SUA_ID_DO_DOCUMENTO');
 
             if (isValidLink) {
                 button.href = foundLink;
-                button.style.pointerEvents = '';
-                button.style.opacity = '1';
-                button.title = button.dataset.ariaLabel || button.dataset.originalText;
-                button.textContent = button.dataset.originalText;
-                button.classList.remove('no-link');
-                button.removeAttribute('tabindex');
+                button.style.pointerEvents = ''; // Permite cliques
+                button.style.opacity = '1'; // Opacidade total
+                button.title = button.dataset.ariaLabel || button.dataset.originalText; // Título do tooltip
+                button.textContent = button.dataset.originalText; // Restaura texto original (se alterado para "Em breve!")
+                button.classList.remove('no-link'); // Remove classe de "sem link"
+                button.removeAttribute('tabindex'); // Torna o botão navegável por teclado
             } else {
-                button.href = "#";
-                button.style.pointerEvents = 'none';
-                button.style.opacity = '0.7';
-                button.title = "Cardápio não disponível ou em breve.";
-                button.textContent = "Em breve!";
-                button.classList.add('no-link');
-                button.setAttribute('tabindex', '-1');
+                button.href = "#"; // Link inativo
+                button.style.pointerEvents = 'none'; // Impede cliques
+                button.style.opacity = '0.7'; // Opacidade reduzida
+                button.title = "Cardápio não disponível ou em breve."; // Título do tooltip
+                button.textContent = "Em breve!"; // Texto "Em breve!"
+                button.classList.add('no-link'); // Adiciona classe de "sem link"
+                button.setAttribute('tabindex', '-1'); // Remove da navegação por teclado
             }
         });
     }
 
     /**
-     * Nova função para determinar a semana e o mês de busca de links.
-     * Isso desacopla a busca de links do mês estrito da data atual,
-     * permitindo que 30 de junho busque em "julho".
+     * Determina a semana atual e o mês de busca de links com base no weekStartDatesMapping.
+     * @returns {object} Um objeto com currentWeekColumnId (ID da coluna da semana atual)
+     * e effectiveMonthForLinks (o nome do mês para buscar os links no menuLinks).
      */
     function getCurrentWeekAndMonthForLinks() {
         const today = new Date();
-        today.setHours(0, 0, 0, 0);
+        today.setHours(0, 0, 0, 0); // Zera horas para comparação de datas
 
         let currentWeekColumnId = '';
-        let effectiveMonthForLinks = ''; // Novo: qual mês no menuLinks devemos usar
+        let effectiveMonthForLinks = '';
 
         for (const dateString in weekStartDatesMapping) {
             const { id: columnId, month: mappedMonth } = weekStartDatesMapping[dateString];
-            const startDate = new Date(dateString + "T00:00:00");
+            const startDate = new Date(dateString + "T00:00:00"); // Garante que a data seja interpretada em UTC ou de forma consistente
 
+            // Calcular a data final da semana (5 dias úteis, Seg-Sex)
             const endDate = new Date(startDate);
-            endDate.setDate(endDate.getDate() + 4); // Semana de 5 dias úteis (Seg-Sex)
+            endDate.setDate(endDate.getDate() + 4); // Adiciona 4 dias para incluir Sex (Seg + 4 = Sex)
 
+            // Se a data de hoje está dentro da faixa da semana
             if (today >= startDate && today <= endDate) {
                 currentWeekColumnId = columnId;
-                effectiveMonthForLinks = mappedMonth; // Usa o mês mapeado!
-                break;
+                effectiveMonthForLinks = mappedMonth;
+                break; // Encontrou a semana atual, pode sair do loop
             }
         }
         return { currentWeekColumnId, effectiveMonthForLinks };
     }
 
+    /**
+     * Destaca a coluna da semana atual na interface.
+     */
     function highlightCurrentWeek() {
-        const { currentWeekColumnId } = getCurrentWeekAndMonthForLinks(); // Reutiliza a nova função
+        const { currentWeekColumnId } = getCurrentWeekAndMonthForLinks(); // Reutiliza a nova função para obter o ID da semana
 
-        // Remove destaques anteriores
+        // Remove destaques anteriores e rótulos "SEMANA ATUAL"
         document.querySelectorAll('.button-column').forEach(col => {
             col.classList.remove('current-week');
             const label = col.querySelector('.current-week-label');
             if (label) label.remove();
         });
 
+        // Adiciona destaque e rótulo à semana atual
         if (currentWeekColumnId) {
             const currentWeekColumn = document.getElementById(currentWeekColumnId);
             if (currentWeekColumn) {
-                currentWeekColumn.classList.add('current-week');
+                currentWeekColumn.classList.add('current-week'); // Adiciona classe para estilização
                 const label = document.createElement('span');
                 label.classList.add('current-week-label');
                 label.textContent = 'SEMANA ATUAL';
-                currentWeekColumn.prepend(label);
+                currentWeekColumn.prepend(label); // Adiciona o rótulo antes do título da coluna
             }
         }
     }
-
-    function filterButtons(filterType, filterName = '') {
-        allButtons.forEach(button => {
-            if (filterType === 'all') {
-                button.classList.remove('inactive-filtered');
-            } else if (button.dataset.type.startsWith(filterType)) {
-                button.classList.remove('inactive-filtered');
-            } else {
-                button.classList.add('inactive-filtered');
-            }
-        });
-
-        if (filterType === 'all') {
-            filterMessage.style.opacity = '0';
-            filterMessage.textContent = '';
-        } else {
-            filterMessage.textContent = `Filtrando por: ${filterName}`;
-            filterMessage.style.opacity = '1';
-        }
-    }
-
-    legendItems.forEach(item => {
-        item.addEventListener('click', function() {
-            legendItems.forEach(li => li.classList.remove('active'));
-            this.classList.add('active');
-            const filterType = this.dataset.filter;
-            const filterName = this.textContent;
-            filterButtons(filterType, filterName);
-        });
-        item.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                this.click();
-            }
-        });
-    });
-
-    showAllButton.addEventListener('click', function() {
-        legendItems.forEach(li => li.classList.remove('active'));
-        filterButtons('all');
-    });
-    showAllButton.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            this.click();
-        }
-    });
 
     // --- Chamadas iniciais ao carregar a página ---
-    applyLinksToButtons();
-    highlightCurrentWeek();
-    filterButtons('all');
-    filterMessage.style.opacity = '0';
+    applyLinksToButtons(); // Aplica os links aos botões
+    highlightCurrentWeek(); // Destaca a semana atual
 });
