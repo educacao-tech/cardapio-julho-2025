@@ -22,7 +22,7 @@
     --border-light-gray: #ccc;
     --no-link-bg-color: #cccccc; /* Fundo para botões "Em breve!" */
     --no-link-border-color: #999999;
-    --no-link-text-color: #666;
+    --no-link-text-color: #666; /* Ajustado para melhor contraste */
     --highlight-color: #27ae60; /* Cor para destaque principal, como o selo "Semana Atual" */
 
     --spacing-xs: 5px;
@@ -162,8 +162,8 @@ h1 {
 
 /* Estilo para a coluna da semana atual (adicionado via JavaScript) */
 .button-column.current-week {
-    border: 2px solid var(--border-current-week) !important; /* Borda verde forte */
-    background-color: var(--background-current-week) !important; /* Fundo verde-claro */
+    border: 2px solid var(--border-current-week); /* Borda verde forte (removido !important) */
+    background-color: var(--background-current-week); /* Fundo verde-claro (removido !important) */
     animation: pulse-shadow 2s infinite ease-in-out; /* Aplica a animação de pulso */
 }
 
@@ -204,6 +204,23 @@ h1 {
     transform: translateY(-2px); /* Pequeno levantamento */
     box-shadow: 0 4px 6px rgba(0,0,0,0.15); /* Sombra mais proeminente */
 }
+
+/* ESTILOS DE FOCO APRIMORADOS */
+.button:focus,
+.legend-item:focus,
+.show-all-button:focus,
+.back-link a:focus {
+    outline: 2px solid var(--primary-hover-color); /* Contorno para acessibilidade de teclado */
+    outline-offset: 3px; /* Espaço entre o elemento e o contorno */
+    box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.4); /* Sombra suave para o foco */
+}
+/* Garante que o foco na legenda ativa combine */
+.legend-item.active:focus {
+    outline: 2px solid var(--highlight-color);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--highlight-color), 0 2px 5px rgba(0,0,0,0.2);
+}
+
 
 /* Estilo para botões inativos no filtro (adicionado via JavaScript) */
 .button.inactive-filtered {
@@ -354,7 +371,7 @@ h1 {
     }
     /* Refinamento da Borda da Semana Atual no Mobile */
     .button-column.current-week {
-        border-width: 1.5px !important; /* Borda mais fina no mobile */
+        border-width: 1.5px; /* Borda mais fina no mobile (removido !important) */
     }
     .column-title {
         font-size: 1.2em; /* Ajusta tamanho do título da coluna em telas pequenas */
