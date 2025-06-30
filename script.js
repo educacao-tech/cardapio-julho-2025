@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // - Para "Em breve!", deixe a string vazia ou use o placeholder 'SUA_ID_DO_DOCUMENTO'.
     // - Certifique-se de que o nome do mês esteja em minúsculas (ex: "julho").
     const menuLinks = {
-        "2025": {
-            "julho": {
-                "semana1": {
+        "2025": { // <-- Ano
+            "julho": { // <-- Mês (em minúsculas)
+                "semana1": { // <-- Seus links para a Semana 1 de Julho de 2025
                     "creche-m-verde": "https://docs.google.com/document/d/17bVULRuOV4NrNoVQ0u0saLrXF7bVAteJ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
                     "creches": "https://docs.google.com/document/d/179eHf9I2YbjIstOSnKuGOVbW8m9ew_TQ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
                     "fundamental-grupo1": "https://docs.google.com/document/d/1o5ys1FU2JDljYMRvyC4XhNkx4bQ89EcQ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             },
             // Adicione aqui outros meses e anos conforme necessário.
-            // Exemplo para Agosto de 2025:
+            // Exemplo para Agosto de 2025 (adapte conforme seu calendário real)
             "agosto": {
                 "semana1": {
                     "creche-m-verde": "https://docs.google.com/document/d/SEMANA1_AGOSTO_CRECHE_M_VERDE/edit",
@@ -79,12 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // É CRÍTICO MANTER ESTE OBJETO ATUALIZADO COM OS PRÓXIMOS MESES E ANOS.
     // As datas são o primeiro dia da semana de referência para a coluna.
     const weekStartDatesMapping = {
-        // Datas para Julho de 2025
-        "2025-07-01": { id: "semana1", month: "julho" },
-        "2025-07-07": { id: "semana2", month: "julho" },
-        "2025-07-14": { id: "semana3", month: "julho" },
-        "2025-07-21": { id: "semana4", month: "julho" },
-        "2025-07-28": { id: "semana5", month: "julho" },
+        // Datas para Julho de 2025 (ajustado para iniciar em 01/07/2025)
+        "2025-07-01": { id: "semana1", month: "julho" }, // 1 de julho de 2025
+        "2025-07-07": { id: "semana2", month: "julho" }, // 7 de julho de 2025
+        "2025-07-14": { id: "semana3", month: "julho" }, // 14 de julho de 2025
+        "2025-07-21": { id: "semana4", month: "julho" }, // 21 de julho de 2025
+        "2025-07-28": { id: "semana5", month: "julho" }, // 28 de julho de 2025
         // Datas para Agosto de 2025 (Exemplo, adapte conforme seu calendário real)
         "2025-08-04": { id: "semana1", month: "agosto" },
         "2025-08-11": { id: "semana2", month: "agosto" },
