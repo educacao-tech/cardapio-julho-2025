@@ -1,12 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Objeto com os links dos cardápios.
-    // **Importante:**
-    // - Para "Em breve!", deixe a string vazia ou use o placeholder 'SUA_ID_DO_DOCUMENTO'.
-    // - Certifique-se de que o nome do mês esteja em minúsculas (ex: "julho").
     const menuLinks = {
         "2025": { // <-- Ano
-            "julho": { // <-- Mês (em minúsculas)
-                "semana1": { // <-- Seus links para a Semana 1 de Julho de 2025
+            "julho": { // <-- Mês (seus links da semana1 já estão aqui!)
+                "semana1": { // Seus links para a Semana 1 (30 de Junho a 4 de Julho)
                     "creche-m-verde": "https://docs.google.com/document/d/17bVULRuOV4NrNoVQ0u0saLrXF7bVAteJ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
                     "creches": "https://docs.google.com/document/d/179eHf9I2YbjIstOSnKuGOVbW8m9ew_TQ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
                     "fundamental-grupo1": "https://docs.google.com/document/d/1o5ys1FU2JDljYMRvyC4XhNkx4bQ89EcQ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
@@ -57,9 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM5/edit"
                 }
             },
-            // Adicione aqui outros meses e anos conforme necessário.
-            // Exemplo para Agosto de 2025 (adapte conforme seu calendário real)
-            "agosto": {
+            "agosto": { // <-- Exemplo para Agosto de 2025
                 "semana1": {
                     "creche-m-verde": "https://docs.google.com/document/d/SEMANA1_AGOSTO_CRECHE_M_VERDE/edit",
                     "creches": "https://docs.google.com/document/d/SEMANA1_AGOSTO_CRECHES/edit",
@@ -70,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     "fundamental-grupo4": "https://docs.google.com/document/d/SEMANA1_AGOSTO_FUNDAMENTAL_GRUPO4/edit",
                     "etec": "https://docs.google.com/document/d/SEMANA1_AGOSTO_ETEC/edit"
                 },
-                // ... adicione as outras semanas de agosto (semana2, semana3, etc.)
             }
         }
     };
@@ -79,34 +72,35 @@ document.addEventListener('DOMContentLoaded', function() {
     // É CRÍTICO MANTER ESTE OBJETO ATUALIZADO COM OS PRÓXIMOS MESES E ANOS.
     // As datas são o primeiro dia da semana de referência para a coluna.
     const weekStartDatesMapping = {
-        // Datas para Julho de 2025 (ajustado para iniciar em 01/07/2025)
-        "2025-07-01": { id: "semana1", month: "julho" }, // 1 de julho de 2025
-        "2025-07-07": { id: "semana2", month: "julho" }, // 7 de julho de 2025
-        "2025-07-14": { id: "semana3", month: "julho" }, // 14 de julho de 2025
-        "2025-07-21": { id: "semana4", month: "julho" }, // 21 de julho de 2025
-        "2025-07-28": { id: "semana5", month: "julho" }, // 28 de julho de 2025
+        // MUITO IMPORTANTE: Mapeie 30 de Junho para a semana1 de julho!
+        "2025-06-30": { id: "semana1", month: "julho" }, // A semana que começa em 30 de junho APONTA PARA OS LINKS DE JULHO/SEMANA1
+
+        // As semanas de Julho continuam a partir de 07/07
+        "2025-07-07": { id: "semana2", month: "julho" },
+        "2025-07-14": { id: "semana3", month: "julho" },
+        "2025-07-21": { id: "semana4", month: "julho" },
+        "2025-07-28": { id: "semana5", month: "julho" },
+
         // Datas para Agosto de 2025 (Exemplo, adapte conforme seu calendário real)
         "2025-08-04": { id: "semana1", month: "agosto" },
         "2025-08-11": { id: "semana2", month: "agosto" },
         "2025-08-18": { id: "semana3", month: "agosto" },
         "2025-08-25": { id: "semana4", month: "agosto" },
         // Adicione mais entradas aqui para os próximos meses/anos!
-        // "AAAA-MM-DD": { id: "semanaX", month: "nomeDoMes" },
     };
+
+    // ... (o restante do seu código JavaScript permanece EXATAMENTE o mesmo) ...
 
     const allButtons = document.querySelectorAll('.button');
     const legendItems = document.querySelectorAll('.legend-item');
     const showAllButton = document.querySelector('.show-all-button');
     const filterMessage = document.getElementById('filter-message');
 
-    /**
-     * Aplica os links do menu aos botões correspondentes e gerencia o estado "Em breve!".
-     * Esta função agora pega o ano e mês da data atual para buscar os links corretos.
-     */
     function applyLinksToButtons() {
         const today = new Date();
         const targetYear = today.getFullYear().toString();
         // Usa Intl.DateTimeFormat para obter o nome do mês em minúsculas (ex: "julho")
+        // IMPORTANTE: Esta linha agora pode ser "enganada" pelo weekStartDatesMapping
         const targetMonthName = new Intl.DateTimeFormat('pt-BR', { month: 'long' }).format(today).toLowerCase();
 
         allButtons.forEach(button => {
@@ -118,106 +112,115 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             let foundLink = null;
-            // Busca o link no objeto menuLinks usando o ano e mês atuais
-            if (menuLinks[targetYear] && menuLinks[targetYear][targetMonthName] && menuLinks[targetYear][targetMonthName][week]) {
-                const weekLinks = menuLinks[targetYear][targetMonthName][week];
+            // AQUI ESTÁ A MUDANÇA: Usamos a lógica de highlightCurrentWeek para determinar o mês e semana efetivos
+            // que devem ser usados para buscar o link.
+            const { currentWeekColumnId, effectiveMonthForLinks } = getCurrentWeekAndMonthForLinks();
 
-                // Prioriza o tipo exato (ex: "fundamental-grupo1")
-                if (weekLinks[type]) {
-                    foundLink = weekLinks[type];
-                } else if (type.startsWith('fundamental')) {
-                    // Lógica de fallback para tipos "fundamental" mais genéricos
-                    for (const key in weekLinks) {
-                        if (key.startsWith(type) && weekLinks[key]) {
-                            foundLink = weekLinks[key];
-                            break;
+            // Se o botão for da semana atual (30/06 a 04/07), ele deve buscar os links de "julho" e "semana1"
+            if (week === currentWeekColumnId && effectiveMonthForLinks) {
+                if (menuLinks[targetYear] && menuLinks[targetYear][effectiveMonthForLinks] && menuLinks[targetYear][effectiveMonthForLinks][week]) {
+                    const weekLinks = menuLinks[targetYear][effectiveMonthForLinks][week];
+
+                    if (weekLinks[type]) {
+                        foundLink = weekLinks[type];
+                    } else if (type.startsWith('fundamental')) {
+                        for (const key in weekLinks) {
+                            if (key.startsWith(type) && weekLinks[key]) {
+                                foundLink = weekLinks[key];
+                                break;
+                            }
+                        }
+                    }
+                }
+            } else { // Para as outras semanas, continua buscando pelo mês da data atual
+                if (menuLinks[targetYear] && menuLinks[targetYear][targetMonthName] && menuLinks[targetYear][targetMonthName][week]) {
+                    const weekLinks = menuLinks[targetYear][targetMonthName][week];
+
+                    if (weekLinks[type]) {
+                        foundLink = weekLinks[type];
+                    } else if (type.startsWith('fundamental')) {
+                        for (const key in weekLinks) {
+                            if (key.startsWith(type) && weekLinks[key]) {
+                                foundLink = weekLinks[key];
+                                break;
+                            }
                         }
                     }
                 }
             }
 
-            // Verifica se o link é válido (não é nulo, vazio, um placeholder ou um link com "SUA_ID_DO_DOCUMENTO")
             const isValidLink = foundLink && foundLink.trim() !== '' && foundLink.startsWith('http') && !foundLink.includes('SUA_ID_DO_DOCUMENTO');
 
             if (isValidLink) {
                 button.href = foundLink;
-                button.style.pointerEvents = ''; // Habilita o clique
+                button.style.pointerEvents = '';
                 button.style.opacity = '1';
-                button.title = button.dataset.ariaLabel || button.dataset.originalText; // Restaura o título (tooltip)
-                button.textContent = button.dataset.originalText; // Restaura o texto original
+                button.title = button.dataset.ariaLabel || button.dataset.originalText;
+                button.textContent = button.dataset.originalText;
                 button.classList.remove('no-link');
-                button.removeAttribute('tabindex'); // Torna o botão navegável por teclado
+                button.removeAttribute('tabindex');
             } else {
-                button.href = "#"; // Impede navegação
-                button.style.pointerEvents = 'none'; // Desabilita o clique visualmente
-                button.style.opacity = '0.7'; // Ajusta a opacidade para "Em breve!"
-                button.title = "Cardápio não disponível ou em breve."; // Altera o título (tooltip)
-                button.textContent = "Em breve!"; // Define o texto como "Em breve!"
+                button.href = "#";
+                button.style.pointerEvents = 'none';
+                button.style.opacity = '0.7';
+                button.title = "Cardápio não disponível ou em breve.";
+                button.textContent = "Em breve!";
                 button.classList.add('no-link');
-                button.setAttribute('tabindex', '-1'); // Remove da navegação por teclado para acessibilidade
+                button.setAttribute('tabindex', '-1');
             }
         });
     }
 
     /**
-     * Destaca a semana atual no cardápio, adicionando uma classe e um selo.
-     * Agora usa o weekStartDatesMapping para uma lógica mais dinâmica.
+     * Nova função para determinar a semana e o mês de busca de links.
+     * Isso desacopla a busca de links do mês estrito da data atual,
+     * permitindo que 30 de junho busque em "julho".
      */
-    function highlightCurrentWeek() {
+    function getCurrentWeekAndMonthForLinks() {
         const today = new Date();
-        today.setHours(0, 0, 0, 0); // Zera a hora para comparação precisa de datas
+        today.setHours(0, 0, 0, 0);
+
+        let currentWeekColumnId = '';
+        let effectiveMonthForLinks = ''; // Novo: qual mês no menuLinks devemos usar
+
+        for (const dateString in weekStartDatesMapping) {
+            const { id: columnId, month: mappedMonth } = weekStartDatesMapping[dateString];
+            const startDate = new Date(dateString + "T00:00:00");
+
+            const endDate = new Date(startDate);
+            endDate.setDate(endDate.getDate() + 4); // Semana de 5 dias úteis (Seg-Sex)
+
+            if (today >= startDate && today <= endDate) {
+                currentWeekColumnId = columnId;
+                effectiveMonthForLinks = mappedMonth; // Usa o mês mapeado!
+                break;
+            }
+        }
+        return { currentWeekColumnId, effectiveMonthForLinks };
+    }
+
+    function highlightCurrentWeek() {
+        const { currentWeekColumnId } = getCurrentWeekAndMonthForLinks(); // Reutiliza a nova função
 
         // Remove destaques anteriores
         document.querySelectorAll('.button-column').forEach(col => {
             col.classList.remove('current-week');
             const label = col.querySelector('.current-week-label');
-            if (label) label.remove(); // Remove o selo se existir
+            if (label) label.remove();
         });
-
-        let currentWeekColumnId = '';
-
-        // Itera sobre as datas mapeadas para encontrar a semana atual
-        for (const dateString in weekStartDatesMapping) {
-            const { id: columnId, month: mappedMonth } = weekStartDatesMapping[dateString];
-            const startDate = new Date(dateString + "T00:00:00"); // Adiciona T00:00:00 para evitar problemas de fuso horário
-
-            // Calcula o final da semana (assumindo 5 dias úteis: Seg, Ter, Qua, Qui, Sex).
-            // Ajuste o "+4" se suas "semanas" tiverem uma duração diferente.
-            const endDate = new Date(startDate);
-            endDate.setDate(endDate.getDate() + 4);
-
-            // Verifica se a data de hoje está dentro do intervalo desta semana
-            if (today >= startDate && today <= endDate) {
-                // Obtém o nome do mês atual para comparar com o mês mapeado
-                const currentMonthName = new Intl.DateTimeFormat('pt-BR', { month: 'long' }).format(today).toLowerCase();
-
-                // Garante que a semana mapeada corresponde ao mês atual
-                if (currentMonthName === mappedMonth) {
-                    currentWeekColumnId = columnId;
-                    break; // Encontrou a semana atual, pode sair do loop
-                }
-            }
-        }
 
         if (currentWeekColumnId) {
             const currentWeekColumn = document.getElementById(currentWeekColumnId);
             if (currentWeekColumn) {
                 currentWeekColumn.classList.add('current-week');
-
-                // Cria e adiciona o selo "SEMANA ATUAL"
                 const label = document.createElement('span');
                 label.classList.add('current-week-label');
                 label.textContent = 'SEMANA ATUAL';
-                currentWeekColumn.prepend(label); // Adiciona no início da coluna
+                currentWeekColumn.prepend(label);
             }
         }
     }
 
-    /**
-     * Filtra os botões visíveis com base no tipo de instituição selecionado na legenda.
-     * @param {string} filterType - O tipo de filtro (ex: 'creches', 'fundamental', 'all').
-     * @param {string} filterName - O nome amigável do filtro para exibir na mensagem.
-     */
     function filterButtons(filterType, filterName = '') {
         allButtons.forEach(button => {
             if (filterType === 'all') {
@@ -229,43 +232,35 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Atualiza a mensagem de filtro ativo
         if (filterType === 'all') {
-            filterMessage.style.opacity = '0'; // Esconde a mensagem
+            filterMessage.style.opacity = '0';
             filterMessage.textContent = '';
         } else {
             filterMessage.textContent = `Filtrando por: ${filterName}`;
-            filterMessage.style.opacity = '1'; // Mostra a mensagem
+            filterMessage.style.opacity = '1';
         }
     }
 
-    // Adiciona event listeners aos itens da legenda (filtros)
     legendItems.forEach(item => {
         item.addEventListener('click', function() {
-            // Remove a classe 'active' de todos os itens da legenda
             legendItems.forEach(li => li.classList.remove('active'));
-            // Adiciona a classe 'active' ao item clicado
             this.classList.add('active');
-
             const filterType = this.dataset.filter;
             const filterName = this.textContent;
             filterButtons(filterType, filterName);
         });
-        // Adiciona suporte a teclado para os itens da legenda
         item.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' || event.key === ' ') { // Ativa com Enter ou Barra de Espaço
-                event.preventDefault(); // Evita rolagem da página com barra de espaço
-                this.click(); // Simula o clique
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                this.click();
             }
         });
     });
 
-    // Adiciona event listener ao botão "Mostrar Todos"
     showAllButton.addEventListener('click', function() {
-        legendItems.forEach(li => li.classList.remove('active')); // Remove a seleção da legenda
-        filterButtons('all'); // Mostra todos os botões
+        legendItems.forEach(li => li.classList.remove('active'));
+        filterButtons('all');
     });
-    // Adiciona suporte a teclado para o botão "Mostrar Todos"
     showAllButton.addEventListener('keydown', function(event) {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
@@ -274,8 +269,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // --- Chamadas iniciais ao carregar a página ---
-    applyLinksToButtons(); // Atribui os links e define "Em breve!"
-    highlightCurrentWeek(); // Destaca a semana atual
-    filterButtons('all'); // Garante que todos os botões estejam visíveis inicialmente
-    filterMessage.style.opacity = '0'; // Inicia a mensagem de filtro invisível
+    applyLinksToButtons();
+    highlightCurrentWeek();
+    filterButtons('all');
+    filterMessage.style.opacity = '0';
 });
