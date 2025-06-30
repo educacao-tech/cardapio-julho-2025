@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', function() {
             "julho": { 
                 "semana1": {
                     "creche-m-verde": "https://docs.google.com/document/d/17bVULRuOV4NrNoVQ0u0saLrXF7bVAteJ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
-                    "creches": "", // Exemplo de link vazio para "Em breve!"
-                    "fundamental-grupo1": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO1_JULHO_SEM1/edit", // Placeholder
-                    "fundamental-grupo2": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO2_JULHO_SEM1/edit",
-                    "fundamental-grupo3": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO3_JULHO_SEM1/edit",
-                    "fundamental-esther": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_ESTHER_JULHO_SEM1/edit",
-                    "fundamental-grupo4": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_FUNDAMENTAL_GRUPO4_JULHO_SEM1/edit",
-                    "etec": "https://docs.google.com/document/d/SUA_ID_DO_DOCUMENTO_ETEC_JULHO_SEM1/edit"
+                    "creches": "https://docs.google.com/document/d/179eHf9I2YbjIstOSnKuGOVbW8m9ew_TQ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true", // Exemplo de link vazio para "Em breve!"
+                    "fundamental-grupo1": "https://docs.google.com/document/d/1o5ys1FU2JDljYMRvyC4XhNkx4bQ89EcQ/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true", // Placeholder
+                    "fundamental-grupo2": "https://docs.google.com/document/d/1a8KLxp1OSgfvgM1aYmEJjXkfEtBykMnH/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
+                    "fundamental-grupo3": "https://docs.google.com/document/d/1ddB_Wj4fvN9FkZQz3DQ37Tcr0HjWdtDU/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
+                    "fundamental-esther": "https://docs.google.com/document/d/1AAMNwRWuL8e7dOw740XwTSJ4Luxq1isk/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
+                    "fundamental-grupo4": "https://docs.google.com/document/d/1agip_wy6m57_94BLLvUazTX5eh9ae3b1/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true",
+                    "etec": "https://docs.google.com/document/d/1a0txX4JEAHBwHUgdgQlsdJyjHEkhWHmv/edit?usp=sharing&ouid=116154735950320601146&rtpof=true&sd=true"
                 },
                 "semana2": {
                     "creche-m-verde": "", // Exemplo de link vazio para testar "Em breve!"
